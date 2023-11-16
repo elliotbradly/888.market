@@ -13,6 +13,9 @@ export function reducer(model: MarketModel = new MarketModel(), act: Act.Actions
  case Act.INIT_MARKET:
  return Buzz.initMarket(clone(model), act.bale, state);
 
+case Act.DEPLOY_MARKET:
+ return Buzz.deployMarket(clone(model), act.bale, state);
+ 
  default:
  return model;
  }

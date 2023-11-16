@@ -15,4 +15,11 @@ export class UpdateMarket implements Action {
  constructor(public bale: MarketBit) {}
 }
 
-export type Actions = | InitMarket | UpdateMarket ;
+export const DEPLOY_MARKET = "[Deploy action] Deploy Market";
+ export class DeployMarket implements Action {
+ readonly type = DEPLOY_MARKET;
+ constructor(public bale: MarketBit) {}
+ }
+ 
+export type Actions = | InitMarket | UpdateMarket 
+| DeployMarket

@@ -36,7 +36,7 @@ export const initMenu = async (cpy: MenuModel, bal: MenuBit, ste: State) => {
 
 export const updateMenu = async (cpy: MenuModel, bal: MenuBit, ste: State) => {
 
-  lst = [ActMrk.UPDATE_MARKET]
+  lst = [ActMrk.UPDATE_MARKET, ActMrk.DEPLOY_MARKET]
 
   bit = await ste.bus(ActGrd.UPDATE_GRID, { x: 0, y: 4, xSpan: 3, ySpan: 12 })
   bit = await ste.bus(ActChc.OPEN_CHOICE, { dat: { clr0: Color.BLACK, clr1: Color.YELLOW }, src: Align.VERTICAL, lst, net: bit.grdBit.dat })
@@ -46,8 +46,47 @@ export const updateMenu = async (cpy: MenuModel, bal: MenuBit, ste: State) => {
   switch (src) {
 
     case ActMrk.UPDATE_MARKET:
-      bit = await ste.hunt( ActMrk.UPDATE_MARKET, {})
+      bit = await ste.hunt(ActMrk.UPDATE_MARKET, {})
       bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: 'updating blender....' })
+      break;
+
+    case ActMrk.DEPLOY_MARKET:
+      bit = await ste.hunt(ActMrk.DEPLOY_MARKET, {})
+
+      lst = bit.mrkBit.dat.split('\n')
+
+      var dex = lst.length;
+
+      var next = async () => {
+
+        if (dex == 0) {
+          //updateMenu(cpy, bal, ste);
+          bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: '... deploy complete' })
+          bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: '..' })
+          bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: '.' })
+          return
+        }
+
+        var itm = lst.shift()
+        dex -= 1
+
+        bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: '...' + itm })
+
+        await next()
+
+      }
+
+      await next()
+
+      lst.forEach(async (a) => {
+
+
+
+
+      })
+
+
+
       break;
 
     default:
@@ -91,4 +130,5 @@ import * as Color from '../../val/console-color';
 
 import * as SHAPE from '../../val/shape'
 import * as FOCUS from "../../val/focus";
+import { list } from "888.market/BEE";
 

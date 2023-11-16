@@ -12,22 +12,33 @@ import * as ActPvt from "../../act/pivot.action";
 var bit, val, idx, dex, lst, dat, src;
 
 
-export const initMarket = async (cpy: MarketModel, bal:MarketBit, ste: State) => {
+export const initMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
-    if (bal.dat != null) bit = await ste.hunt(ActBus.INIT_BUS, { idx: cpy.idx, lst: [ActMrk], dat: bal.dat, src: bal.src })
+  if (bal.dat != null) bit = await ste.hunt(ActBus.INIT_BUS, { idx: cpy.idx, lst: [ActMrk], dat: bal.dat, src: bal.src })
 
-    if (bal.val == 1) patch(ste, ActMnu.INIT_MENU, bal);
-    if (bal.slv != null) bal.slv({ intBit: { idx: "init-space" } });
+  if (bal.val == 1) patch(ste, ActMnu.INIT_MENU, bal);
+  if (bal.slv != null) bal.slv({ intBit: { idx: "init-space" } });
 
- return cpy;
+  return cpy;
 };
 
-export const updateMarket = (cpy: MarketModel, bal:MarketBit, ste: State) => {
- return cpy;
+export const updateMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
+  return cpy;
 };
 
+export const deployMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
+
+  const { exec } = require('child_process');
+
+  exec('npm run deploy', async (err, stdout, stderr) => {
+      if (bal.slv != null) bal.slv({ mrkBit: { idx: "deploy-market", dat: stdout } });
+  });
+
+  return cpy;
+};
 
 var patch = (ste, type, bale) => ste.dispatch({ type, bale });
+
 
 import { MarketModel } from "../market.model";
 import MarketBit from "../fce/market.bit";

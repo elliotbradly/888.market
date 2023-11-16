@@ -6,6 +6,7 @@
   "author": "elliotbradly <elliotbradly@gmail.com>",
   "private": true,
   "scripts": {
+    "deploy":"cd.. && cd reptiq.com && git commit -am 'reptiq.com' && git push" ,
     "test": "echo \"No test specified\" && exit 0",
     "dev": "quasar dev",
     "build": "quasar build",
