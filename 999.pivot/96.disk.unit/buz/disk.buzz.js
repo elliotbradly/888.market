@@ -77,7 +77,6 @@ const readDisk = async (cpy, bal, ste) => {
 };
 exports.readDisk = readDisk;
 const indexDisk = async (cpy, bal, ste) => {
-    debugger;
     if ((bal.src == null) && (bal.slv != null))
         bal.slv({ dskBit: { idx: "list-disk-error", src: 'no src present' } });
     if (bal.val == null)
@@ -122,7 +121,11 @@ const copyDisk = async (cpy, bal, ste) => {
     }
     FS.ensureDirSync(bal.src);
     FS.ensureDirSync(bal.idx);
-    bit = await FS.remove(bal.idx);
+    if (bal.val == null)
+        bal.val = 0;
+    if (bal.val == 0) {
+        bit = await FS.remove(bal.idx);
+    }
     if (bal.dat == 'debug') {
         console.log("............");
         console.log("copying..." + bal.src);

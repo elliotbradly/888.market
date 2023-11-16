@@ -21,5 +21,12 @@ export const DEPLOY_MARKET = "[Deploy action] Deploy Market";
  constructor(public bale: MarketBit) {}
  }
  
+export const OPEN_MARKET = "[Open action] Open Market";
+ export class OpenMarket implements Action {
+ readonly type = OPEN_MARKET;
+ constructor(public bale: MarketBit) {}
+ }
+ 
 export type Actions = | InitMarket | UpdateMarket 
 | DeployMarket
+| OpenMarket

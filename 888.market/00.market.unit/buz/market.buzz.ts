@@ -22,16 +22,40 @@ export const initMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) =
   return cpy;
 };
 
-export const updateMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
+export const openMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
+
+  const { exec } = require('child_process');
+
+  exec('quasar dev -m electron', async (err, stdout, stderr) => {
+    if (bal.slv != null) bal.slv({ mrkBit: { idx: "open-market", dat: stdout } });
+  });
+
+
   return cpy;
 };
 
-export const deployMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
+
+
+export const updateMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
+
+  const { exec } = require('child_process');
+
+  exec('quasar build', async (err, stdout, stderr) => {
+    if (bal.slv != null) bal.slv({ mrkBit: { idx: "update-market", dat: stdout } });
+  });
+
+
+  return cpy;
+};
+
+export const deployMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) => {
+
+  bit = await ste.bus(ActDsk.COPY_DISK, { src: './dist/spa', idx: '../reptiq.com', val:1 })
 
   const { exec } = require('child_process');
 
   exec('npm run deploy', async (err, stdout, stderr) => {
-      if (bal.slv != null) bal.slv({ mrkBit: { idx: "deploy-market", dat: stdout } });
+    if (bal.slv != null) bal.slv({ mrkBit: { idx: "deploy-market", dat: stdout } });
   });
 
   return cpy;
