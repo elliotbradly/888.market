@@ -2,17 +2,17 @@
 const routes = [
   {
     path: '/',
-    component: () => import('layouts/SimpleLayout.vue'),
+    component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/000.index.vue') }
     ]
   },
 
   {
-    path: '/gameScreen',
+    path: '/artes',
     component: () => import('layouts/SimpleLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/000.index.vue') }
+      { path: '', component: () => import('pages/Arte.vue') }
     ]
   },
 
@@ -22,6 +22,14 @@ const routes = [
     component: () => import('layouts/SimpleLayout.vue'),
     children: [
       { path: '', component: () => import('pages/000.index.vue') }
+    ]
+  },
+
+  {
+    path: '/fullscreen',
+    component: () => import('layouts/SimpleLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/001.full-screen.vue') }
     ]
   },
 

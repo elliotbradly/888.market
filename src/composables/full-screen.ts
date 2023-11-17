@@ -8,17 +8,19 @@ import * as ActSpr from '../110.shade/06.sprite.unit/sprite.action'
 import * as ActHex from '../110.shade/07.hexagon.unit/hexagon.action'
 import * as ActFcg from '../110.shade/08.focigon.unit/focigon.action'
 
-
 export type HelloWorld = string | number
 
-
 export const mount = async (value: HelloWorld) => {
+
+
+  debugger
+
   console.log('sampleFunc:: ', value)
 
   const instance = getCurrentInstance();
   const SHADE = inject('SHADE')
 
-  var bit = await SHADE['hunt'](ActVsg.MOUNT_VISAGE, { idx: "vsg00", src: "indexCanvas", dat: {w:32, h:32} });
+  var bit = await SHADE['hunt'](ActVsg.MOUNT_VISAGE, { idx: "vsg00", src: "indexCanvas", dat: {} });
   instance?.proxy?.$forceUpdate();
 
   return value
@@ -31,7 +33,7 @@ export const update = async (value: HelloWorld) => {
   const SHADE = inject('SHADE')
 
   var bit = await SHADE['hunt'](ActVsg.REMOVE_VISAGE, { idx: "vsg00" })
-  bit = await SHADE['hunt'](ActVsg.MOUNT_VISAGE, { idx: "vsg00", src: "indexCanvas", dat: {w:32, h:32} })
+  bit = await SHADE['hunt'](ActVsg.MOUNT_VISAGE, { idx: "vsg00", src: "indexCanvas", dat: {} })
 
   bit = await SHADE['hunt'](ActVsg.READ_VISAGE, { idx: "vsg00" })
 
