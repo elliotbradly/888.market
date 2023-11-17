@@ -1,58 +1,72 @@
 <template>
+  <q-layout view="hHh lpR fFf">
 
-  <div class="full-height row wrap justify-start items-start content-start">
+    <q-header elevated class="bg-primary text-white" height-hint="98">
+      <q-toolbar>
+        <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
-    <canvas id="indexCanvas"> </canvas>
+        <q-toolbar-title>
+          <q-avatar>
+            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
+          </q-avatar>
+          Title
+        </q-toolbar-title>
 
-  </div>
+        <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />
+      </q-toolbar>
 
+      <q-tabs align="left">
+        <q-route-tab to="/page1" label="Page One" />
+        <q-route-tab to="/page2" label="Page Two" />
+        <q-route-tab to="/page3" label="Page Three" />
+      </q-tabs>
+    </q-header>
+
+    <q-drawer v-model="leftDrawerOpen" side="left" overlay bordered>
+      <!-- drawer content -->
+    </q-drawer>
+
+    <q-drawer v-model="rightDrawerOpen" side="right" overlay bordered>
+      <!-- drawer content -->
+    </q-drawer>
+
+    <q-page-container>
+      <router-view />
+    </q-page-container>
+
+    <q-footer elevated class="bg-grey-8 text-white">
+      <q-toolbar>
+        <q-toolbar-title>
+          <q-avatar>
+            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
+          </q-avatar>
+          <div>Title</div>
+        </q-toolbar-title>
+      </q-toolbar>
+    </q-footer>
+
+  </q-layout>
 </template>
 
-<script setup>
-import { ref, onMounted, onUnmounted, onUpdated, inject, getCurrentInstance } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
-
-import * as ActShd from '../110.shade/00.shade.unit/shade.action'
-import * as ActVsg from '../110.shade/01.visage.unit/visage.action'
-import * as ActCan from '../110.shade/03.container.unit/container.action'
-
-import {mount, update, unmount } from "../composables/tiny-screen"
-
-const router = useRouter()
-const route = useRoute()
-
-const instance = getCurrentInstance();
-const SHADE = inject('SHADE')
-
-onMounted(async () => {
-
-  mount('on')
-
-  //alert(window.electron.store.get('foo'));
-})
-
-onUpdated(async () => {
-  // text content should be the same as current `count.value`
-
-  update('on')
-
-
-})
-
-onUnmounted(async () => {
-
-  //unmount('on')
-
-
-})
-
-
-</script>
-
 <script>
-import { defineComponent } from 'vue'
+import { ref } from 'vue'
 
-export default defineComponent({
-  name: 'GamePlay'
-})
+export default {
+  setup () {
+    const leftDrawerOpen = ref(false)
+    const rightDrawerOpen = ref(false)
+
+    return {
+      leftDrawerOpen,
+      toggleLeftDrawer () {
+        leftDrawerOpen.value = !leftDrawerOpen.value
+      },
+
+      rightDrawerOpen,
+      toggleRightDrawer () {
+        rightDrawerOpen.value = !rightDrawerOpen.value
+      }
+    }
+  }
+}
 </script>

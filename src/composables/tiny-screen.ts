@@ -29,7 +29,7 @@ export const update = async (value: HelloWorld) => {
   const SHADE = inject('SHADE')
 
   var bit = await SHADE['hunt'](ActVsg.REMOVE_VISAGE, { idx: "vsg00" })
-  bit = await SHADE['hunt'](ActVsg.MOUNT_VISAGE, { idx: "vsg00", src: "indexCanvas", dat: { w: 64, h: 64 } })
+  bit = await SHADE['hunt'](ActVsg.MOUNT_VISAGE, { idx: "vsg00", src: "indexCanvas", dat: { w: 640, h: 640 } })
 
   bit = await SHADE['hunt'](ActVsg.READ_VISAGE, { idx: "vsg00" })
 
