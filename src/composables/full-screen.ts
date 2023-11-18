@@ -12,9 +12,6 @@ export type HelloWorld = string | number
 
 export const mount = async (value: HelloWorld) => {
 
-
-  debugger
-
   console.log('sampleFunc:: ', value)
 
   const instance = getCurrentInstance();

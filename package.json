@@ -6,7 +6,7 @@
   "author": "elliotbradly <elliotbradly@gmail.com>",
   "private": true,
   "scripts": {
-    "deploy":"cd.. && cd reptiq.com && git commit -am 'reptiq.com' && git push" ,
+    "deploy": "cd.. && cd reptiq.com && git commit -am 'reptiq.com' && git push",
     "test": "echo \"No test specified\" && exit 0",
     "dev": "quasar dev",
     "build": "quasar build",
@@ -16,6 +16,7 @@
   "dependencies": {
     "@quasar/extras": "^1.16.4",
     "@root/walk": "^1.1.0",
+    "@tanstack/vue-query": "^5.8.4",
     "aedes": "^0.50.0",
     "async-mqtt": "2.2.1",
     "blessed": "^0.1.81",

@@ -1,33 +1,65 @@
 <template>
+  <h4>Post {{ postId }}</h4>
+  <h4>Post {{ isError }}</h4>
+  <h4>Post {{ isFetching }}</h4>
+  <h4>Post {{ isPending }}</h4>
+
+
+  <a @click="$emit('setPostId', -1)" href="#"> Back </a>
+  <div v-if="isPending" class="update">Loading...</div>
+  <div v-else-if="isError">An error has occurred: {{ error }}</div>
+  <div v-else-if="data">
+    <h1>{{ data.title }}</h1>
+    <div>
+      <p>{{ data.body }}</p>
+    </div>
+    <div v-if="isFetching" class="update">Background Updating...</div>
+  </div>
 
   <div class="full-height row wrap justify-start items-start content-start">
 
     <canvas id="indexCanvas"> </canvas>
 
   </div>
-
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted, onUpdated, inject, getCurrentInstance } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { useQuery } from '@tanstack/vue-query'
 
-import * as ActShd from '../110.shade/00.shade.unit/shade.action'
-import * as ActVsg from '../110.shade/01.visage.unit/visage.action'
-import * as ActCan from '../110.shade/03.container.unit/container.action'
 
-import {mount, update, unmount } from "../composables/full-screen"
+import { mount, update, unmount } from "../composables/full-screen"
 //import {mount, update, unmount } from "../composables/tiny-screen"
 
-const router = useRouter()
-const route = useRoute()
+var postId = 6;
+var isPending, isError, isFetching, data, error;
 
-const instance = getCurrentInstance();
-const SHADE = inject('SHADE')
+const fetcher = async (id) =>
+  await fetch('https://jsonplaceholder.typicode.com/posts/${id}').then((response) =>
+    response.json(),
+  )
 
-onMounted(async () => {
+
+
+
+onMounted(async (props) => {
+
+
+
+  let { isPending, isError, isFetching, data, error } = useQuery({
+  queryKey: ['post', postId],
+  queryFn: () => fetcher(postId),
+
+
+
+})
 
   mount('on')
+
+
+
+
 
   //alert(window.electron.store.get('foo'));
 })
