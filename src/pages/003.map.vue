@@ -1,4 +1,11 @@
 <template>
+
+<div class="full-height row wrap justify-start items-start content-start">
+
+<canvas id="indexCanvas"> </canvas>
+
+</div>
+
 </template>
 
 <script setup>
@@ -6,7 +13,7 @@ import { ref, onMounted, onUnmounted, onUpdated, inject, getCurrentInstance } fr
 import { useRouter, useRoute } from 'vue-router'
 import { useQuery } from '@tanstack/vue-query'
 
-import { mount, update, unmount } from "../composables/full-screen"
+import { mount, update, unmount } from "../display/world-map"
 
 onMounted(async (props) => {
 
@@ -41,39 +48,3 @@ export default defineComponent({
 </script>
 
 
-<style>
-
-* {
-  box-sizing: border-box;
-}
-
-.container {
-  background: #EEE;
-  width: 50%;
-  margin-bottom: 20px;
-}
-
-.item {
-  width:  60px;
-  height: 60px;
-  float: left;
-  border: 1px solid;
-  background: #09F;
-}
-
-.item.w2 { width: 240px; }
-.item.w3 { width: 180px; }
-.item.w4 { width: 240px; }
-
-.item.h2 { height: 240px; }
-.item.h3 { height: 160px; }
-.item.h4 { height: 220px; }
-.item.h5 { height: 280px; }
-
-.stamp {
-  background: red;
-  opacity: 0.75;
-  position: absolute;
-  border: 1px solid;
-}
-</style>
