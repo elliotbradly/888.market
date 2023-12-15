@@ -61,7 +61,23 @@ export const deployMarket = async (cpy: MarketModel, bal: MarketBit, ste: State)
   return cpy;
 };
 
+export const createMarket = (cpy: MarketModel, bal:MarketBit, ste: State) => {
+
+  const { exec } = require('child_process');
+
+  exec('npx quasar build', async (err, stdout, stderr) => {
+
+    if (bal.slv != null) bal.slv({ mrkBit: { idx: "create-market", dat: { src:'888.market'} } });
+
+  })
+
+  return cpy;
+  };
+
 var patch = (ste, type, bale) => ste.dispatch({ type, bale });
+
+
+
 
 
 import { MarketModel } from "../market.model";

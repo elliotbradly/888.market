@@ -36,7 +36,7 @@ export const initMenu = async (cpy: MenuModel, bal: MenuBit, ste: State) => {
 
 export const updateMenu = async (cpy: MenuModel, bal: MenuBit, ste: State) => {
 
-  lst = [ActMrk.OPEN_MARKET, ActMrk.UPDATE_MARKET, ActMrk.DEPLOY_MARKET]
+  lst = [ActMrk.OPEN_MARKET, ActMrk.UPDATE_MARKET, ActMrk.CREATE_MARKET]
 
   bit = await ste.bus(ActGrd.UPDATE_GRID, { x: 0, y: 4, xSpan: 3, ySpan: 12 })
   bit = await ste.bus(ActChc.OPEN_CHOICE, { dat: { clr0: Color.BLACK, clr1: Color.YELLOW }, src: Align.VERTICAL, lst, net: bit.grdBit.dat })
@@ -108,33 +108,17 @@ export const updateMenu = async (cpy: MenuModel, bal: MenuBit, ste: State) => {
 
       break;
 
-    case ActMrk.DEPLOY_MARKET:
-      bit = await ste.hunt(ActMrk.DEPLOY_MARKET, {})
+    case ActMrk.CREATE_MARKET:
+      bit = await ste.hunt(ActMrk.CREATE_MARKET, {})
 
-      lst = bit.mrkBit.dat.split('\n')
+      dat = bit.mrkBit
+      if ( dat == null )  break
+      var itm = JSON.stringify(dat)
+      lst = itm.split(',')
+      lst.forEach((a) => ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: a }))
+      ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: '------------' })
+      bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: 'create market....' })
 
-      var dex = lst.length;
-
-      var next = async () => {
-
-        if (dex == 0) {
-          //updateMenu(cpy, bal, ste);
-          bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: '... deploy complete' })
-          bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: '..' })
-          bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: '.' })
-          return
-        }
-
-        var itm = lst.shift()
-        dex -= 1
-
-        bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: '...' + itm })
-
-        await next()
-
-      }
-
-      await next()
 
       break;
 

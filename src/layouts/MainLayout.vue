@@ -9,7 +9,7 @@
             <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
           </q-avatar>
           <span class="angle-font text-red" style="position:relative; top:40px; left:5px">
-            Repti
+            Ficti
           </span>
 
           <span class="new-art-font text-orange" style="position:relative; top:37px; left:3px">
@@ -35,45 +35,51 @@
 
 
 
-        <div class="q-pa-md q-pr-xl angle-font">
+        <div class="q-pa-md q-pr-m angle-font">
     <q-btn-dropdown
       class="glossy"
       color="orange"
-      label="Game"
+      label="Connect"
        outline rounded
        size="l"
     >
-      <div class="row no-wrap q-pa-md">
+
+
+
+      <div class="row no-wrap q-pa-md q-gutter-y-lg">
         <div class="column">
-          <div class="text-h6 q-mb-md">Settings</div>
-          <q-toggle v-model="mobileData" label="Use Mobile Data" />
-          <q-toggle v-model="bluetooth" label="Bluetooth" />
+          <div class="text-h6 q-mb-md angle-font text-orange">Connect Wallet</div>
+
+
+          <q-separator />
+
+          <q-btn round>
+      <q-avatar size="32px">
+        <img src="/img/nami.png">
+      </q-avatar>
+    </q-btn>
+
+    <q-separator />
+
+    <q-btn round>
+      <q-avatar size="32px">
+        <img src="/img/eternl.png">
+      </q-avatar>
+    </q-btn>
+
+
+
+
         </div>
 
-        <q-separator vertical inset class="q-mx-lg" />
 
-        <div class="column items-center">
-          <q-avatar size="72px">
-            <img src="https://cdn.quasar.dev/img/boy-avatar.png">
-          </q-avatar>
-
-          <div class="text-subtitle1 q-mt-md q-mb-xs">John Doe</div>
-
-          <q-btn
-            color="primary"
-            label="Logout"
-            push
-            size="sm"
-            v-close-popup
-          />
-        </div>
       </div>
     </q-btn-dropdown>
   </div>
 
 
 
-  <div class="q-pa-md q-pr-xl angle-font">
+  <div class="q-pa-md q-pr-m angle-font">
     <q-btn-dropdown
       class="glossy"
       color="orange"
@@ -108,51 +114,6 @@
       </div>
     </q-btn-dropdown>
   </div>
-
-  <div class="q-pa-md q-pr-xl angle-font">
-    <q-btn-dropdown
-      class="glossy"
-      color="orange"
-      label="Market"
-      outline rounded
-      size="l"
-    >
-      <div class="row no-wrap q-pa-md">
-        <div class="column">
-          <div class="text-h6 q-mb-md">Settings</div>
-          <q-toggle v-model="mobileData" label="Use Mobile Data" />
-          <q-toggle v-model="bluetooth" label="Bluetooth" />
-        </div>
-
-        <q-separator vertical inset class="q-mx-lg" />
-
-        <div class="column items-center">
-          <q-avatar size="72px">
-            <img src="https://cdn.quasar.dev/img/boy-avatar.png">
-          </q-avatar>
-
-          <div class="text-subtitle1 q-mt-md q-mb-xs">John Doe</div>
-
-          <q-btn
-            color="primary"
-            label="Logout"
-            push
-            size="sm"
-            v-close-popup
-          />
-        </div>
-      </div>
-    </q-btn-dropdown>
-  </div>
-
-
-
-
-
-
-
-  <q-btn class="glossy text-red angle-font" color="yellow" label="connect" size="xl"  />
-
 
 
       </q-toolbar>
