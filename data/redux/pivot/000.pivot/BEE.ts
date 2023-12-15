@@ -1,16 +1,13 @@
 import Model from "./99.core/interface/model.interface";
 
-import MarketUnit from "./00.market.unit/market.unit";
-import WalletUnit from "./01.wallet.unit/wallet.unit";
+import ControlUnit from "./00.control.unit/control.unit";
 import CollectUnit from "./97.collect.unit/collect.unit";
 import MenuUnit from "./98.menu.unit/menu.unit";
 import BusUnit from "./99.bus.unit/bus.unit";
 
 
-import Market from "./00.market.unit/fce/market.interface";
-import { MarketModel } from "./00.market.unit/market.model";
-import Wallet from "./01.wallet.unit/fce/wallet.interface";
-import { WalletModel } from "./01.wallet.unit/wallet.model";
+import Control from "./00.control.unit/fce/control.interface";
+import { ControlModel } from "./00.control.unit/control.model";
 import Collect from "./97.collect.unit/fce/collect.interface";
 import { CollectModel } from "./97.collect.unit/collect.model";
 import Menu from "./98.menu.unit/fce/menu.interface";
@@ -19,18 +16,16 @@ import Bus from "./99.bus.unit/fce/bus.interface";
 import { BusModel } from "./99.bus.unit/bus.model";
 
 
-export const list: Array<any> = [MarketUnit,WalletUnit,CollectUnit,MenuUnit,BusUnit];
+export const list: Array<any> = [ControlUnit,CollectUnit,MenuUnit,BusUnit];
 
-import * as reduceFromMarket from "./00.market.unit/market.reduce";
-import * as reduceFromWallet from "./01.wallet.unit/wallet.reduce";
+import * as reduceFromControl from "./00.control.unit/control.reduce";
 import * as reduceFromCollect from "./97.collect.unit/collect.reduce";
 import * as reduceFromMenu from "./98.menu.unit/menu.reduce";
 import * as reduceFromBus from "./99.bus.unit/bus.reduce";
 
 
 export const reducer: any = {
- market : reduceFromMarket.reducer, 
-wallet : reduceFromWallet.reducer, 
+ control : reduceFromControl.reducer, 
 collect : reduceFromCollect.reducer, 
 menu : reduceFromMenu.reducer, 
 bus : reduceFromBus.reducer, 
@@ -39,8 +34,7 @@ bus : reduceFromBus.reducer,
 
 export default class UnitData implements Model {
  
- market : Market = new MarketModel();
-wallet : Wallet = new WalletModel();
+ control : Control = new ControlModel();
 collect : Collect = new CollectModel();
 menu : Menu = new MenuModel();
 bus : Bus = new BusModel();
