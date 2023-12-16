@@ -20,13 +20,5 @@ export const POLL_WALLET = "[Poll action] Poll Wallet";
  readonly type = POLL_WALLET;
  constructor(public bale: WalletBit) {}
  }
- 
-export const OPEN_WALLET = "[Open action] Open Wallet";
- export class OpenWallet implements Action {
- readonly type = OPEN_WALLET;
- constructor(public bale: WalletBit) {}
- }
- 
-export type Actions = | InitWallet | UpdateWallet 
-| PollWallet
-| OpenWallet
+
+export type Actions = | InitWallet | UpdateWallet | PollWallet ;

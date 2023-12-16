@@ -1,5 +1,5 @@
 
-export default interface WalletBit {
+export default interface MarketBit {
   idx: string;
   src?: string;
   val?: number;

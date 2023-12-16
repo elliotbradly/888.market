@@ -1,6 +1,7 @@
 import * as ActMnu from "../../98.menu.unit/menu.action";
 
 import * as ActMrk from "../../00.market.unit/market.action";
+import * as ActWal from "../../01.wallet.unit/wallet.action";
 
 import * as ActCol from "../../97.collect.unit/collect.action";
 import * as ActBus from "../../99.bus.unit/bus.action";
@@ -14,10 +15,10 @@ var bit, val, idx, dex, lst, dat, src;
 
 export const initMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
-  if (bal.dat != null) bit = await ste.hunt(ActBus.INIT_BUS, { idx: cpy.idx, lst: [ActMrk], dat: bal.dat, src: bal.src })
+  if (bal.dat != null) bit = await ste.hunt(ActBus.INIT_BUS, { idx: cpy.idx, lst: [ActMrk, ActWal], dat: bal.dat, src: bal.src })
 
   if (bal.val == 1) patch(ste, ActMnu.INIT_MENU, bal);
-  if (bal.slv != null) bal.slv({ intBit: { idx: "init-space" } });
+  if (bal.slv != null) bal.slv({ intBit: { idx: "init-market" } });
 
   return cpy;
 };
@@ -40,8 +41,22 @@ export const updateMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
   const { exec } = require('child_process');
 
-  exec('quasar build', async (err, stdout, stderr) => {
-    if (bal.slv != null) bal.slv({ mrkBit: { idx: "update-market", dat: stdout } });
+  exec('tsc -b 888.market', async (err, stdout, stderr) => {
+    if (err) {
+      console.error(`exec error: ${err}`);
+    }
+
+    bit = await ste.bus(ActPvt.BUNDLE_PIVOT, { src: "888.market" });
+
+    bit = await ste.bus(ActDsk.READ_DISK, { src: './work/888.market.js' })
+    var shade = bit.dskBit.dat;
+
+    var writeBit = await ste.bus(ActDsk.WRITE_DISK, { src: './public/jsx/888.market.js', dat: shade })
+
+    setTimeout(() => {
+      if (bal.slv != null) bal.slv({ mrkBit: { idx: "update-market", dat: { lst: [writeBit] } } });
+    }, 3);
+
   });
 
 
@@ -50,7 +65,7 @@ export const updateMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
 export const deployMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
-  bit = await ste.bus(ActDsk.COPY_DISK, { src: './dist/spa', idx: '../reptiq.com', val:1 })
+  bit = await ste.bus(ActDsk.COPY_DISK, { src: './dist/spa', idx: '../reptiq.com', val: 1 })
 
   const { exec } = require('child_process');
 
@@ -61,24 +76,31 @@ export const deployMarket = async (cpy: MarketModel, bal: MarketBit, ste: State)
   return cpy;
 };
 
-export const createMarket = (cpy: MarketModel, bal:MarketBit, ste: State) => {
+export const createMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
   const { exec } = require('child_process');
 
   exec('npx quasar build', async (err, stdout, stderr) => {
 
-    if (bal.slv != null) bal.slv({ mrkBit: { idx: "create-market", dat: { src:'888.market'} } });
+    bal.slv({ mrkBit: { idx: "create-market", dat: { src: '888.market' } } });
 
   })
 
   return cpy;
-  };
+};
+
+
+
+export const testMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
+
+
+  bal.slv({ mrkBit: { idx: "test-market", dat: { src: '888.market' } } });
+
+  return cpy;
+};
+
 
 var patch = (ste, type, bale) => ste.dispatch({ type, bale });
-
-
-
-
 
 import { MarketModel } from "../market.model";
 import MarketBit from "../fce/market.bit";

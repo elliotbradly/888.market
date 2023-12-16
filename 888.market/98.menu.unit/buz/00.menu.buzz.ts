@@ -19,10 +19,10 @@ export const initMenu = async (cpy: MenuModel, bal: MenuBit, ste: State) => {
 
   if (bal == null) bal = { idx: null }
 
-  bit = await ste.bus(ActGrd.UPDATE_GRID, { x: 3, y: 0, xSpan: 6, ySpan: 12 })
+  bit = await ste.bus(ActGrd.UPDATE_GRID, { x: 3, y: 0, xSpan: 1, ySpan: 12 })
   bit = await ste.bus(ActCvs.WRITE_CANVAS, { idx: 'cvs1', dat: { clr: Color.CYAN, net: bit.grdBit.dat }, })
 
-  bit = await ste.bus(ActGrd.UPDATE_GRID, { x: 8, y: 0, xSpan: 2, ySpan: 12 })
+  bit = await ste.bus(ActGrd.UPDATE_GRID, { x: 4, y: 0, xSpan: 8, ySpan: 12 })
   bit = await ste.bus(ActCns.WRITE_CONSOLE, { idx: 'cns00', src: "", dat: { net: bit.grdBit.dat, src: "alligaor0" } })
 
   bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: "-----------" })
@@ -80,31 +80,13 @@ export const updateMenu = async (cpy: MenuModel, bal: MenuBit, ste: State) => {
     case ActMrk.UPDATE_MARKET:
       bit = await ste.hunt(ActMrk.UPDATE_MARKET, {})
 
-
-      lst = bit.mrkBit.dat.split('\n')
-
-      var dex = lst.length;
-
-      var next = async () => {
-
-        if (dex == 0) {
-          //updateMenu(cpy, bal, ste);
-          bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: '... update complete' })
-          bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: '..' })
-          bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: '.' })
-          return
-        }
-
-        var itm = lst.shift()
-        dex -= 1
-
-        bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: '...' + itm })
-
-        await next()
-
-      }
-
-      await next()
+      dat = bit.mrkBit
+      if (dat == null) break
+      var itm = JSON.stringify(dat)
+      lst = itm.split(',')
+      lst.forEach((a) => ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: a }))
+      ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: '------------' })
+      bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: 'update market....' })
 
       break;
 
@@ -112,7 +94,7 @@ export const updateMenu = async (cpy: MenuModel, bal: MenuBit, ste: State) => {
       bit = await ste.hunt(ActMrk.CREATE_MARKET, {})
 
       dat = bit.mrkBit
-      if ( dat == null )  break
+      if (dat == null) break
       var itm = JSON.stringify(dat)
       lst = itm.split(',')
       lst.forEach((a) => ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: a }))

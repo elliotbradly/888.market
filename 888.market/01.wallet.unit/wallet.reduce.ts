@@ -13,6 +13,12 @@ export function reducer(model: WalletModel = new WalletModel(), act: Act.Actions
  case Act.INIT_WALLET:
  return Buzz.initWallet(clone(model), act.bale, state);
 
+case Act.POLL_WALLET:
+ return Buzz.pollWallet(clone(model), act.bale, state);
+ 
+case Act.OPEN_WALLET:
+ return Buzz.openWallet(clone(model), act.bale, state);
+ 
  default:
  return model;
  }

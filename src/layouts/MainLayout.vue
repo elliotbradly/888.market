@@ -47,7 +47,7 @@
 
                 <q-separator />
 
-                <q-btn round @click="connectWallet(0, $event)">
+                <q-btn round @click="wallet(0, $event)">
                   <q-avatar size="32px">
                     <img src="/img/nami.png">
                   </q-avatar>
@@ -55,7 +55,7 @@
 
                 <q-separator />
 
-                <q-btn round @click="connectWallet(1, $event)">
+                <q-btn round @click="wallet(1, $event)">
                   <q-avatar size="32px">
                     <img src="/img/eternl.png">
                   </q-avatar>
@@ -125,82 +125,52 @@
 </style>
 
 
+<script setup>
+import { ref, onMounted, onUnmounted, onUpdated, inject, getCurrentInstance } from 'vue'
 
+import * as ActMrk from '../888.market/00.market.unit/market.action'
+import * as ActWal from '../888.market/01.wallet.unit/wallet.action'
+
+const MARKET = inject('MARKET')
+
+const wallet = async (val, event) => {
+
+  var bit = await MARKET['hunt'](ActWal.POLL_WALLET, {});
+
+  var lst = bit.walBit.lst;
+
+  if (lst.length != 0) {
+
+    console.log("opening wallet")
+    bit = await MARKET['hunt'](ActWal.OPEN_WALLET, { idx: lst[0] });
+    var res = bit.mrkBit;
+    console.log('wallet size ' + JSON.stringify(res))
+
+  }
+
+
+}
+
+onMounted(async () => {
+
+
+
+
+})
+
+onUpdated(async () => { })
+
+onUnmounted(async () => { })
+
+</script>
 
 <script>
-import { defineComponent, ref } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
-
-
-
-const linksList = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-]
+import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'MainLayout',
-
-  components: {
-    EssentialLink
-  },
-
-  setup() {
-    const leftDrawerOpen = ref(false)
-
-    const connectWallet = (val, evt) => {
-
-      alert(val)
-
-    }
-
-    return {
-      essentialLinks: linksList,
-      leftDrawerOpen,
-      toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
-    }
-  }
+  name: 'MainLayout'
 })
 </script>
+
+
+
