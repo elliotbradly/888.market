@@ -10,6 +10,10 @@ export const updateWallet = (cpy: WalletModel, bal: WalletBit, ste: State) => {
 
 export const pollWallet = (cpy: WalletModel, bal: WalletBit, ste: State) => {
 
+
+  const { wallet, connected } = useWallet();
+
+
   const wallets = [];
   var count;
 
@@ -52,7 +56,7 @@ export const pollWallet = (cpy: WalletModel, bal: WalletBit, ste: State) => {
 
 export const openWallet = async (cpy: WalletModel, bal: WalletBit, ste: State) => {
 
-  var mrkMod: MarketModel = ste.value.market;
+
 
   const walletKey = bal.src;
 
@@ -67,19 +71,38 @@ export const openWallet = async (cpy: WalletModel, bal: WalletBit, ste: State) =
 
   let walletIsEnabled = false;
 
-  try {
-    const walletName = bal.src;
-    walletIsEnabled = await window['cardano'][ walletKey ].isEnabled();
-  } catch (err) {
-    console.log(err)
-    bal.slv({ walBit: { idx: "open-wallet-error", val: walletIsEnabled } });
+  //const userAddress = (await wallet.getRewardAddresses())[0];
+  //const res = await backendGetNonce(userAddress);
 
-    return cpy
-  }
+  // try {
+  //   const walletName = bal.src;
+  //   walletIsEnabled = await window['cardano'][ walletKey ].isEnabled();
+  // } catch (err) {
+  //   console.log(err)
+  //   bal.slv({ walBit: { idx: "open-wallet-error", val: walletIsEnabled } });
+
+  //  return cpy
+  // }
+
+  //const userAddress = (await wallet.getRewardAddresses())[0];
+  //const signature = await wallet.signData(userAddress, nonce);
+  //const res = await backendVerifySignature(nonce, userAddress, signature);
+  //if (res.result === true) {
+  // setState(2);
+  //} else {
+  //  setState(3);
+  // }
+  //} catch (error) {
+  // setState(0);
 
   bal.slv({ walBit: { idx: "open-wallet", val: walletIsEnabled } });
 
   return cpy;
+
+
+
+
+
 };
 
 
@@ -89,3 +112,4 @@ import WalletBit from "../fce/wallet.bit";
 import State from "../../99.core/state";
 import { MarketModel } from "888.market/00.market.unit/market.model";
 
+import { CardanoWallet, MeshBadge, useWallet } from "@meshsdk/react";
