@@ -135,13 +135,14 @@ const MARKET = inject('MARKET')
 
 const wallet = async (val, event) => {
 
+
   var bit = await MARKET['hunt'](ActWal.POLL_WALLET, {});
 
   var lst = bit.walBit.lst;
 
   if (lst.length != 0) {
 
-    console.log("opening wallet")
+    debugger  
     bit = await MARKET['hunt'](ActWal.OPEN_WALLET, { idx: lst[0] });
     var res = bit.mrkBit;
     console.log('wallet size ' + JSON.stringify(res))
