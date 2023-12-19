@@ -66,8 +66,8 @@ export const pollWallet = (cpy: WalletModel, bal: WalletBit, ste: State) => {
   return cpy;
 };
 
-const fetcher = async (id) =>
-  await fetch(`https://ancient-harbor-25799-e23312a8ce20.herokuapp.com/key`).then(
+const fetcher = async (idx) =>
+  await fetch(`http://127.0.0.1:8787/writePlayer?idx=` + idx).then(
     (response) => response.json(),
   )
 
@@ -89,14 +89,20 @@ export const openWallet = async (cpy: WalletModel, bal: WalletBit, ste: State) =
   let walletIsEnabled = false;
 
   const userAddress = (await cpy.api.getRewardAddresses())[0];
+  debugger
+
+  var result = fetcher( userAddress )
+  debugger
+
+
 
   // do: send request with 'userAddress' to the backend
   // do: if new user, create new user model in the database
-  
-  debugger
+
+
 
   const networkId = await cpy.api.getNetworkId();
-  
+
   //const changeAddrHex = await cpy.api.getChangeAddress();
   //const changeAddress = cpy.api.Address.from_bytes(Buffer.from(changeAddrHex, 'hex'));
   //const stakeCredential = cpy.api.BaseAddress.from_address(changeAddress).stake_cred();
@@ -108,15 +114,15 @@ export const openWallet = async (cpy: WalletModel, bal: WalletBit, ste: State) =
 
   //const messageUtf = `account: ${stakeAddrBech32}`;
 
-  
-  
+
+
   const messageUtf = `account: ${ networkId + ':::' + userAddress}`;
 
   let Buffer = require('buffer/').Buffer
 
   const messageHex = Buffer.from(messageUtf).toString("hex");
   const sigData = await cpy.api.signData(userAddress, messageHex);
-  
+
   debugger
 
 

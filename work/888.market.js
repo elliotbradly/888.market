@@ -287,7 +287,7 @@ const pollWallet = (cpy, bal, ste) => {
     return cpy;
 };
 exports.pollWallet = pollWallet;
-const fetcher = async (id) => await fetch(`https://ancient-harbor-25799-e23312a8ce20.herokuapp.com/key`).then((response) => response.json());
+const fetcher = async (idx) => await fetch(`http://127.0.0.1:8787/writePlayer?idx=` + idx).then((response) => response.json());
 const openWallet = async (cpy, bal, ste) => {
     const walletKey = bal.idx;
     try {
@@ -300,9 +300,11 @@ const openWallet = async (cpy, bal, ste) => {
     }
     let walletIsEnabled = false;
     const userAddress = (await cpy.api.getRewardAddresses())[0];
+    debugger;
+    var result = fetcher(userAddress);
+    debugger;
     // do: send request with 'userAddress' to the backend
     // do: if new user, create new user model in the database
-    debugger;
     const networkId = await cpy.api.getNetworkId();
     //const changeAddrHex = await cpy.api.getChangeAddress();
     //const changeAddress = cpy.api.Address.from_bytes(Buffer.from(changeAddrHex, 'hex'));
