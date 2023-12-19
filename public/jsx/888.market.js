@@ -290,7 +290,6 @@ exports.pollWallet = pollWallet;
 const fetcher = async (id) => await fetch(`https://ancient-harbor-25799-e23312a8ce20.herokuapp.com/key`).then((response) => response.json());
 const openWallet = async (cpy, bal, ste) => {
     const walletKey = bal.idx;
-    debugger;
     try {
         cpy.api = await window['cardano'][walletKey].enable();
     }
