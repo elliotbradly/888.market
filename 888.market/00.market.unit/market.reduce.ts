@@ -25,6 +25,9 @@ case Act.CREATE_MARKET:
 case Act.TEST_MARKET:
  return Buzz.testMarket(clone(model), act.bale, state);
  
+case Act.DEV_MARKET:
+ return Buzz.devMarket(clone(model), act.bale, state);
+ 
  default:
  return model;
  }

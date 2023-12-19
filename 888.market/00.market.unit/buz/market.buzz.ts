@@ -12,7 +12,6 @@ import * as ActPvt from "../../act/pivot.action";
 
 var bit, val, idx, dex, lst, dat, src;
 
-
 export const initMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
   if (bal.dat != null) bit = await ste.hunt(ActBus.INIT_BUS, { idx: cpy.idx, lst: [ActMrk, ActWal], dat: bal.dat, src: bal.src })
@@ -99,8 +98,38 @@ export const testMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
   return cpy;
 };
 
+export const devMarket = async (cpy: MarketModel, bal:MarketBit, ste: State) => {
+
+
+  
+
+    
+  const { exec } = require('child_process');
+
+  exec('npm run dev', async (err, stdout, stderr) => {
+
+    
+  })
+
+  var open = require('open')
+    await open('http://localhost:9000/#/');
+  
+    bit = await ste.bus(ActMrk.UPDATE_MARKET, { })
+
+
+  bal.slv({ mrkBit: { idx: "dev-market", dat: { src: '888.market' } } });
+
+
+  return cpy;
+
+
+  return cpy;
+  };
+
 
 var patch = (ste, type, bale) => ste.dispatch({ type, bale });
+
+
 
 import { MarketModel } from "../market.model";
 import MarketBit from "../fce/market.bit";

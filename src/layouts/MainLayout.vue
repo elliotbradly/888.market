@@ -19,7 +19,7 @@
           <br>
 
           <span class='pixily-font text-white ' style="position:relative; top:-20px; left:44px">
-            current simulation time
+            12:06-12.19.23
           </span>
 
 
@@ -128,13 +128,20 @@
 <script setup>
 import { ref, onMounted, onUnmounted, onUpdated, inject, getCurrentInstance } from 'vue'
 
+import { useQuery } from "@tanstack/vue-query";
+
+
 import * as ActMrk from '../888.market/00.market.unit/market.action'
 import * as ActWal from '../888.market/01.wallet.unit/wallet.action'
 
+var value = false
+
 const MARKET = inject('MARKET')
 
-const wallet = async (val, event) => {
 
+
+const wallet = async (val, event) => {
+  
 
   var bit = await MARKET['hunt'](ActWal.POLL_WALLET, {});
 
@@ -142,7 +149,7 @@ const wallet = async (val, event) => {
 
   if (lst.length != 0) {
 
-    debugger  
+     
     bit = await MARKET['hunt'](ActWal.OPEN_WALLET, { idx: lst[0] });
     var res = bit.mrkBit;
     console.log('wallet size ' + JSON.stringify(res))

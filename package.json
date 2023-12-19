@@ -17,7 +17,7 @@
     "@meshsdk/react": "^1.1.9",
     "@quasar/extras": "^1.16.4",
     "@root/walk": "^1.1.0",
-    "@tanstack/vue-query": "^5.8.4",
+    "@tanstack/vue-query": "^5.14.1",
     "aedes": "^0.50.0",
     "async-mqtt": "2.2.1",
     "blessed": "^0.1.81",

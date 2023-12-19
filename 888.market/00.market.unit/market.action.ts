@@ -39,8 +39,15 @@ export const TEST_MARKET = "[Test action] Test Market";
  constructor(public bale: MarketBit) {}
  }
  
+export const DEV_MARKET = "[Dev action] Dev Market";
+ export class DevMarket implements Action {
+ readonly type = DEV_MARKET;
+ constructor(public bale: MarketBit) {}
+ }
+ 
 export type Actions = | InitMarket | UpdateMarket 
 | DeployMarket
 | OpenMarket
 | CreateMarket
 | TestMarket
+| DevMarket

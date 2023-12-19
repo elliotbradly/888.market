@@ -66,16 +66,16 @@ export const pollWallet = (cpy: WalletModel, bal: WalletBit, ste: State) => {
   return cpy;
 };
 
+const fetcher = async (id) =>
+  await fetch(`https://ancient-harbor-25799-e23312a8ce20.herokuapp.com/key`).then(
+    (response) => response.json(),
+  )
+
 
 
 export const openWallet = async (cpy: WalletModel, bal: WalletBit, ste: State) => {
 
-
-  debugger
-
   const walletKey = bal.idx;
-
-  debugger
 
   try {
     cpy.api = await window['cardano'][walletKey].enable();
@@ -90,8 +90,39 @@ export const openWallet = async (cpy: WalletModel, bal: WalletBit, ste: State) =
 
   const userAddress = (await cpy.api.getRewardAddresses())[0];
 
-  debugger
+  // do: send request with 'userAddress' to the backend
+  // do: if new user, create new user model in the database
   
+  debugger
+
+  const networkId = await cpy.api.getNetworkId();
+  
+  //const changeAddrHex = await cpy.api.getChangeAddress();
+  //const changeAddress = cpy.api.Address.from_bytes(Buffer.from(changeAddrHex, 'hex'));
+  //const stakeCredential = cpy.api.BaseAddress.from_address(changeAddress).stake_cred();
+  //const stakeAddress = cpy.api.RewardAddress.new(networkId, stakeCredential).to_address();
+
+  //var stakeAddrBech32 = stakeAddress.to_bech32()
+  //var stakeAddrHex = stakeAddress.to_hex()
+
+
+  //const messageUtf = `account: ${stakeAddrBech32}`;
+
+  
+  
+  const messageUtf = `account: ${ networkId + ':::' + userAddress}`;
+
+  let Buffer = require('buffer/').Buffer
+
+  const messageHex = Buffer.from(messageUtf).toString("hex");
+  const sigData = await cpy.api.signData(userAddress, messageHex);
+  
+  debugger
+
+
+  //const result = await submitToBackend(sigData);
+  //alert(result.message);
+
   //const res = await backendGetNonce(userAddress);
 
   // try {
@@ -125,50 +156,7 @@ export const openWallet = async (cpy: WalletModel, bal: WalletBit, ste: State) =
 
 };
 
-import {
-  Address,
-  BaseAddress,
-  MultiAsset,
-  Assets,
-  ScriptHash,
-  Costmdls,
-  Language,
-  CostModel,
-  AssetName,
-  TransactionUnspentOutput,
-  TransactionUnspentOutputs,
-  TransactionOutput,
-  Value,
-  TransactionBuilder,
-  TransactionBuilderConfigBuilder,
-  TransactionOutputBuilder,
-  LinearFee,
-  BigNum,
-  BigInt,
-  TransactionHash,
-  TransactionInputs,
-  TransactionInput,
-  TransactionWitnessSet,
-  Transaction,
-  PlutusData,
-  PlutusScripts,
-  PlutusScript,
-  PlutusList,
-  Redeemers,
-  Redeemer,
-  RedeemerTag,
-  Ed25519KeyHashes,
-  ConstrPlutusData,
-  ExUnits,
-  Int,
-  NetworkInfo,
-  EnterpriseAddress,
-  TransactionOutputs,
-  hash_transaction,
-  hash_script_data,
-  hash_plutus_data,
-  ScriptDataHash, Ed25519KeyHash, NativeScript, StakeCredential
-} from "@emurgo/cardano-serialization-lib-asmjs"
+
 
 import { WalletModel } from "../wallet.model";
 import WalletBit from "../fce/wallet.bit";
