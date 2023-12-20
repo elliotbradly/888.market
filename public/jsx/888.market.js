@@ -287,7 +287,8 @@ const pollWallet = (cpy, bal, ste) => {
     return cpy;
 };
 exports.pollWallet = pollWallet;
-const fetcher = async (idx) => await fetch(`http://127.0.0.1:8787/writePlayer?idx=` + idx).then((response) => response.json());
+const writePlayer = async (idx) => await fetch(`./writePlayer/?idx=` + idx).then((response) => response.json());
+const verifyPlayer = async (idx, dat) => await fetch(`./verifyPlayer/?idx=` + idx + '&dat=' + dat).then((response) => response.json());
 const openWallet = async (cpy, bal, ste) => {
     const walletKey = bal.idx;
     try {
@@ -295,16 +296,14 @@ const openWallet = async (cpy, bal, ste) => {
     }
     catch (err) {
         console.log(err);
+        debugger;
         bal.slv({ walBit: { idx: "open-wallet-error", src: walletKey } });
         return cpy;
     }
-    let walletIsEnabled = false;
     const userAddress = (await cpy.api.getRewardAddresses())[0];
-    debugger;
-    var result = fetcher(userAddress);
-    debugger;
-    // do: send request with 'userAddress' to the backend
-    // do: if new user, create new user model in the database
+    //need a fail state
+    var result = await writePlayer(userAddress);
+    var code = result.dat.code;
     const networkId = await cpy.api.getNetworkId();
     //const changeAddrHex = await cpy.api.getChangeAddress();
     //const changeAddress = cpy.api.Address.from_bytes(Buffer.from(changeAddrHex, 'hex'));
@@ -313,10 +312,11 @@ const openWallet = async (cpy, bal, ste) => {
     //var stakeAddrBech32 = stakeAddress.to_bech32()
     //var stakeAddrHex = stakeAddress.to_hex()
     //const messageUtf = `account: ${stakeAddrBech32}`;
-    const messageUtf = `account: ${networkId + ':::' + userAddress}`;
+    const messageUtf = code;
     let Buffer = require('buffer/').Buffer;
     const messageHex = Buffer.from(messageUtf).toString("hex");
     const sigData = await cpy.api.signData(userAddress, messageHex);
+    var result0 = await verifyPlayer(userAddress, sigData.signature);
     debugger;
     //const result = await submitToBackend(sigData);
     //alert(result.message);
@@ -339,7 +339,7 @@ const openWallet = async (cpy, bal, ste) => {
     // }
     //} catch (error) {
     // setState(0);
-    bal.slv({ walBit: { idx: "open-wallet", val: walletIsEnabled } });
+    bal.slv({ walBit: { idx: "open-wallet", val: 1 } });
     return cpy;
 };
 exports.openWallet = openWallet;
