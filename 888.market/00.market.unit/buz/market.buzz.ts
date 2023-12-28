@@ -98,33 +98,25 @@ export const testMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
   return cpy;
 };
 
-export const devMarket = async (cpy: MarketModel, bal:MarketBit, ste: State) => {
+export const devMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
-
-  
-
-    
   const { exec } = require('child_process');
 
-  exec('npm run dev', async (err, stdout, stderr) => {
+  process.chdir("./fictiq.com");
 
-    
+  exec('wrangler pages dev ./', async (err, stdout, stderr) => {
+    console.log(stdout)
   })
 
   var open = require('open')
-    await open('http://localhost:9000/#/');
-  
-    bit = await ste.bus(ActMrk.UPDATE_MARKET, { })
+  await open('http://127.0.0.1:8788/#/');
 
+  //bit = await ste.bus(ActMrk.UPDATE_MARKET, {})
 
   bal.slv({ mrkBit: { idx: "dev-market", dat: { src: '888.market' } } });
 
-
   return cpy;
-
-
-  return cpy;
-  };
+};
 
 
 var patch = (ste, type, bale) => ste.dispatch({ type, bale });
