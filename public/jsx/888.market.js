@@ -10,12 +10,14 @@ global.MARKET.ActMrk = require("../dist/888.market/00.market.unit/market.action"
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"../dist/888.market/00.market.unit/market.action":3,"../dist/888.market/hunt":41}],2:[function(require,module,exports){
+(function (process){(function (){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.devMarket = exports.testMarket = exports.createMarket = exports.deployMarket = exports.updateMarket = exports.openMarket = exports.initMarket = void 0;
 const ActMnu = require("../../98.menu.unit/menu.action");
 const ActMrk = require("../../00.market.unit/market.action");
 const ActWal = require("../../01.wallet.unit/wallet.action");
+const ActCns = require("../../act/console.action");
 const ActBus = require("../../99.bus.unit/bus.action");
 const ActDsk = require("../../act/disk.action");
 const ActPvt = require("../../act/pivot.action");
@@ -81,20 +83,32 @@ const testMarket = (cpy, bal, ste) => {
 };
 exports.testMarket = testMarket;
 const devMarket = async (cpy, bal, ste) => {
-    const { exec } = require('child_process');
-    exec('npm run dev', async (err, stdout, stderr) => {
-    });
-    var open = require('open');
-    await open('http://localhost:9000/#/');
     bit = await ste.bus(ActMrk.UPDATE_MARKET, {});
+    const { exec, fork } = require('child_process');
+    process.chdir("./fictiq.com");
+    exec('vrt.dev.bat', async (err, stdout, stderr) => {
+        console.log(stdout);
+    });
+    process.chdir("../base");
+    exec('wrangler dev', async (err, stdout, stderr) => {
+        console.log(stdout);
+    });
+    process.chdir("../auth");
+    const forked = fork('index.js');
+    forked.on('message', (msg) => {
+        ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: msg });
+    });
+    process.chdir("../auth");
+    var open = require('open');
+    open('http://127.0.0.1:8788/#/');
     bal.slv({ mrkBit: { idx: "dev-market", dat: { src: '888.market' } } });
-    return cpy;
     return cpy;
 };
 exports.devMarket = devMarket;
 var patch = (ste, type, bale) => ste.dispatch({ type, bale });
 
-},{"../../00.market.unit/market.action":3,"../../01.wallet.unit/wallet.action":9,"../../98.menu.unit/menu.action":21,"../../99.bus.unit/bus.action":26,"../../act/disk.action":37,"../../act/pivot.action":39,"child_process":undefined,"open":undefined}],3:[function(require,module,exports){
+}).call(this)}).call(this,require('_process'))
+},{"../../00.market.unit/market.action":3,"../../01.wallet.unit/wallet.action":9,"../../98.menu.unit/menu.action":21,"../../99.bus.unit/bus.action":26,"../../act/console.action":36,"../../act/disk.action":37,"../../act/pivot.action":39,"_process":54,"child_process":undefined,"open":undefined}],3:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DevMarket = exports.DEV_MARKET = exports.TestMarket = exports.TEST_MARKET = exports.CreateMarket = exports.CREATE_MARKET = exports.OpenMarket = exports.OPEN_MARKET = exports.DeployMarket = exports.DEPLOY_MARKET = exports.UpdateMarket = exports.UPDATE_MARKET = exports.InitMarket = exports.INIT_MARKET = void 0;

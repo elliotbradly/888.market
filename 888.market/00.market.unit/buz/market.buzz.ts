@@ -2,6 +2,7 @@ import * as ActMnu from "../../98.menu.unit/menu.action";
 
 import * as ActMrk from "../../00.market.unit/market.action";
 import * as ActWal from "../../01.wallet.unit/wallet.action";
+import * as ActCns from "../../act/console.action";
 
 import * as ActCol from "../../97.collect.unit/collect.action";
 import * as ActBus from "../../99.bus.unit/bus.action";
@@ -100,7 +101,9 @@ export const testMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
 export const devMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
-  const { exec } = require('child_process');
+  bit = await ste.bus(ActMrk.UPDATE_MARKET, {})
+
+  const { exec, fork } = require('child_process');
 
   process.chdir("./fictiq.com");
 
@@ -108,12 +111,29 @@ export const devMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) =>
     console.log(stdout)
   })
 
-  var open = require('open')
-  await open('http://127.0.0.1:8788/#/');
+  process.chdir("../base");
 
-  //bit = await ste.bus(ActMrk.UPDATE_MARKET, {})
+  exec('wrangler dev', async (err, stdout, stderr) => {
+    console.log(stdout)
+  })
+
+  //process.chdir("../auth");
+
+  //const forked = fork('index.js')
+
+  //forked.on('message', (msg) => {
+
+  //  ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: msg })
+  //});
+
+  process.chdir("../");
+
+  var open = require('open')
+  open('http://127.0.0.1:8788/#/')
 
   bal.slv({ mrkBit: { idx: "dev-market", dat: { src: '888.market' } } });
+
+
 
   return cpy;
 };
