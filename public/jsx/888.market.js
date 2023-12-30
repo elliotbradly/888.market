@@ -59,12 +59,8 @@ const updateMarket = (cpy, bal, ste) => {
 };
 exports.updateMarket = updateMarket;
 const deployMarket = async (cpy, bal, ste) => {
-    bit = await ste.bus(ActDsk.COPY_DISK, { src: './dist/spa', idx: '../reptiq.com', val: 1 });
-    const { exec } = require('child_process');
-    exec('npm run deploy', async (err, stdout, stderr) => {
-        if (bal.slv != null)
-            bal.slv({ mrkBit: { idx: "deploy-market", dat: stdout } });
-    });
+    bit = await ste.bus(ActDsk.COPY_DISK, { src: './dist/spa', idx: './reptiq.com/public', val: 1 });
+    bal.slv({ mrkBit: { idx: "deploy-market", dat: { src: 'None' } } });
     return cpy;
 };
 exports.deployMarket = deployMarket;
@@ -800,8 +796,8 @@ const initMenu = async (cpy, bal, ste) => {
 };
 exports.initMenu = initMenu;
 const updateMenu = async (cpy, bal, ste) => {
-    lst = [ActMrk.DEV_MARKET, ActMrk.OPEN_MARKET, ActMrk.UPDATE_MARKET, ActMrk.CREATE_MARKET];
-    bit = await ste.bus(ActGrd.UPDATE_GRID, { x: 0, y: 4, xSpan: 5, ySpan: 12 });
+    lst = [ActMrk.DEV_MARKET, ActMrk.OPEN_MARKET, ActMrk.UPDATE_MARKET, ActMrk.CREATE_MARKET, ActMrk.DEPLOY_MARKET];
+    bit = await ste.bus(ActGrd.UPDATE_GRID, { x: 0, y: 4, xSpan: 4, ySpan: 12 });
     bit = await ste.bus(ActChc.OPEN_CHOICE, { dat: { clr0: Color.BLACK, clr1: Color.YELLOW }, src: Align.VERTICAL, lst, net: bit.grdBit.dat });
     src = bit.chcBit.src;
     switch (src) {
@@ -837,6 +833,17 @@ const updateMenu = async (cpy, bal, ste) => {
             break;
         case ActMrk.UPDATE_MARKET:
             bit = await ste.hunt(ActMrk.UPDATE_MARKET, {});
+            dat = bit.mrkBit;
+            if (dat == null)
+                break;
+            var itm = JSON.stringify(dat);
+            lst = itm.split(',');
+            lst.forEach((a) => ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: a }));
+            ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: '------------' });
+            bit = await ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: 'update market....' });
+            break;
+        case ActMrk.DEPLOY_MARKET:
+            bit = await ste.hunt(ActMrk.DEPLOY_MARKET, {});
             dat = bit.mrkBit;
             if (dat == null)
                 break;

@@ -65,13 +65,11 @@ export const updateMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
 export const deployMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
-  bit = await ste.bus(ActDsk.COPY_DISK, { src: './dist/spa', idx: '../reptiq.com', val: 1 })
 
-  const { exec } = require('child_process');
+  bit = await ste.bus(ActDsk.COPY_DISK, { src: './dist/spa', idx: './reptiq.com/public', val: 1 })
 
-  exec('npm run deploy', async (err, stdout, stderr) => {
-    if (bal.slv != null) bal.slv({ mrkBit: { idx: "deploy-market", dat: stdout } });
-  });
+  bal.slv({ mrkBit: { idx: "deploy-market", dat: {src:'None'} } });
+
 
   return cpy;
 };

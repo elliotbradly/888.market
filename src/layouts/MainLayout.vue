@@ -9,7 +9,7 @@
             <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
           </q-avatar>
           <span class="angle-font text-red" style="position:relative; top:40px; left:5px">
-            Ficti
+            Repti
           </span>
 
           <span class="new-art-font text-orange" style="position:relative; top:37px; left:3px">
@@ -141,7 +141,7 @@ const MARKET = inject('MARKET')
 
 
 const wallet = async (val, event) => {
-  
+
 
   var bit = await MARKET['hunt'](ActWal.POLL_WALLET, {});
 
@@ -149,7 +149,7 @@ const wallet = async (val, event) => {
 
   if (lst.length != 0) {
 
-     
+
     bit = await MARKET['hunt'](ActWal.OPEN_WALLET, { idx: lst[0] });
     var res = bit.mrkBit;
     console.log('wallet size ' + JSON.stringify(res))
