@@ -35,6 +35,6 @@ yarn-error.log*
 /.vscode/settings.json
 /*.editorconfig
 /fictiq.com
-/base
+/reptiq.com
 /base
 /auth

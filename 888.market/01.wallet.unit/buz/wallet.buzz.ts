@@ -91,6 +91,7 @@ export const openWallet = async (cpy: WalletModel, bal: WalletBit, ste: State) =
   }
 
   const userAddress = (await cpy.api.getRewardAddresses())[0];
+  debugger
   //need a fail state
   var result = await writePlayer(userAddress)
 

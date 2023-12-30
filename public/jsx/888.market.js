@@ -17,7 +17,6 @@ exports.devMarket = exports.testMarket = exports.createMarket = exports.deployMa
 const ActMnu = require("../../98.menu.unit/menu.action");
 const ActMrk = require("../../00.market.unit/market.action");
 const ActWal = require("../../01.wallet.unit/wallet.action");
-const ActCns = require("../../act/console.action");
 const ActBus = require("../../99.bus.unit/bus.action");
 const ActDsk = require("../../act/disk.action");
 const ActPvt = require("../../act/pivot.action");
@@ -86,19 +85,19 @@ const devMarket = async (cpy, bal, ste) => {
     bit = await ste.bus(ActMrk.UPDATE_MARKET, {});
     const { exec, fork } = require('child_process');
     process.chdir("./fictiq.com");
-    exec('vrt.dev.bat', async (err, stdout, stderr) => {
+    exec('wrangler pages dev ./', async (err, stdout, stderr) => {
         console.log(stdout);
     });
     process.chdir("../base");
     exec('wrangler dev', async (err, stdout, stderr) => {
         console.log(stdout);
     });
-    process.chdir("../auth");
-    const forked = fork('index.js');
-    forked.on('message', (msg) => {
-        ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: msg });
-    });
-    process.chdir("../auth");
+    //process.chdir("../auth");
+    //const forked = fork('index.js')
+    //forked.on('message', (msg) => {
+    //  ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: msg })
+    //});
+    process.chdir("../");
     var open = require('open');
     open('http://127.0.0.1:8788/#/');
     bal.slv({ mrkBit: { idx: "dev-market", dat: { src: '888.market' } } });
@@ -108,7 +107,7 @@ exports.devMarket = devMarket;
 var patch = (ste, type, bale) => ste.dispatch({ type, bale });
 
 }).call(this)}).call(this,require('_process'))
-},{"../../00.market.unit/market.action":3,"../../01.wallet.unit/wallet.action":9,"../../98.menu.unit/menu.action":21,"../../99.bus.unit/bus.action":26,"../../act/console.action":36,"../../act/disk.action":37,"../../act/pivot.action":39,"_process":54,"child_process":undefined,"open":undefined}],3:[function(require,module,exports){
+},{"../../00.market.unit/market.action":3,"../../01.wallet.unit/wallet.action":9,"../../98.menu.unit/menu.action":21,"../../99.bus.unit/bus.action":26,"../../act/disk.action":37,"../../act/pivot.action":39,"_process":54,"child_process":undefined,"open":undefined}],3:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DevMarket = exports.DEV_MARKET = exports.TestMarket = exports.TEST_MARKET = exports.CreateMarket = exports.CREATE_MARKET = exports.OpenMarket = exports.OPEN_MARKET = exports.DeployMarket = exports.DEPLOY_MARKET = exports.UpdateMarket = exports.UPDATE_MARKET = exports.InitMarket = exports.INIT_MARKET = void 0;
@@ -315,6 +314,7 @@ const openWallet = async (cpy, bal, ste) => {
         return cpy;
     }
     const userAddress = (await cpy.api.getRewardAddresses())[0];
+    debugger;
     //need a fail state
     var result = await writePlayer(userAddress);
     var code = result.dat.code;
