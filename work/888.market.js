@@ -84,8 +84,8 @@ exports.testMarket = testMarket;
 const devMarket = async (cpy, bal, ste) => {
     bit = await ste.bus(ActMrk.UPDATE_MARKET, {});
     const { exec, fork } = require('child_process');
-    process.chdir("./fictiq.com");
-    exec('wrangler pages dev ./', async (err, stdout, stderr) => {
+    process.chdir("./reptiq.com");
+    exec('npm start', async (err, stdout, stderr) => {
         console.log(stdout);
     });
     process.chdir("../base");
@@ -99,7 +99,7 @@ const devMarket = async (cpy, bal, ste) => {
     //});
     process.chdir("../");
     var open = require('open');
-    open('http://127.0.0.1:8788/#/');
+    open('http://localhost:3001/#/');
     bal.slv({ mrkBit: { idx: "dev-market", dat: { src: '888.market' } } });
     return cpy;
 };
