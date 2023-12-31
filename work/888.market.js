@@ -88,7 +88,10 @@ const devMarket = async (cpy, bal, ste) => {
     exec('wrangler dev', async (err, stdout, stderr) => {
         console.log(stdout);
     });
-    //process.chdir("../auth");
+    process.chdir("../reptiq.com");
+    exec('npm start', async (err, stdout, stderr) => {
+        console.log(stdout);
+    });
     //const forked = fork('index.js')
     //forked.on('message', (msg) => {
     //  ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: msg })

@@ -115,7 +115,11 @@ export const devMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) =>
     console.log(stdout)
   })
 
-  //process.chdir("../auth");
+  process.chdir("../reptiq.com");
+
+  exec('npm start', async (err, stdout, stderr) => {
+    console.log(stdout)
+  })
 
   //const forked = fork('index.js')
 
