@@ -74,9 +74,6 @@ onMounted(async (props) => {
   let { isPending, isError, isFetching, data, error } = useQuery({
   queryKey: ['post', postId],
   queryFn: () => fetcher(postId),
-
-
-
 })
 
   mount('on')
