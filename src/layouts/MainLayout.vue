@@ -142,7 +142,6 @@ const MARKET = inject('MARKET')
 
 const wallet = async (val, event) => {
 
-
   var bit = await MARKET['hunt'](ActWal.POLL_WALLET, {});
 
   var lst = bit.walBit.lst;
