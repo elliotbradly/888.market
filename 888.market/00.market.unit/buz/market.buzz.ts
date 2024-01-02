@@ -28,7 +28,15 @@ export const openMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
   const { exec } = require('child_process');
 
   exec('npx quasar dev -m electron', async (err, stdout, stderr) => {
-    if (bal.slv != null) bal.slv({ mrkBit: { idx: "open-market", dat: stdout } });
+
+    process.chdir("../reptiq.com");
+
+    exec('npm start', async (err, stdout, stderr) => {
+      console.log(stdout)
+      bal.slv({ mrkBit: { idx: "open-market", dat: stdout } });
+    })
+
+    process.chdir("../");
   });
 
 
