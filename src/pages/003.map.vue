@@ -1,6 +1,4 @@
 <template>
-
-
   <div class="q-pa-md q-gutter-sm">
     <q-btn style="background: #FF0080; color: white" label="Fuchsia" />
   </div>
@@ -10,10 +8,10 @@
     <span v-if="isPending">Loading...</span>
     <span v-else-if="isError">Error: {{ error.message }}</span>
     <!-- We can assume by this point that `isSuccess === true` -->
-    
-    
+
+
     <ul v-else-if="data">
-    
+
       <pre>{{ JSON.stringify(data, null, 2) }}</pre>
 
     </ul>
@@ -24,9 +22,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, onUpdated, inject, getCurrentInstance } from 'vue'
+import { ref, watch, watchEffect, onMounted, onUnmounted, onUpdated, inject, getCurrentInstance } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useQueryClient, useQuery, useMutation } from '@tanstack/vue-query'
+
 
 import { mount, update, unmount } from "../display/world-map"
 
@@ -36,10 +35,21 @@ const fetcher = async (id) =>
   )
 
 
+  const cool = async (id) =>
+  await fetch('cool/').then((response) =>
+    response.json(),
+  )
+
+
 const { isPending, isError, data, error } = useQuery({
   queryKey: ['dat'],
   queryFn: fetcher,
+  refetchInterval:1111
 })
+
+const coolQuery = useQuery({  queryFn: cool , refetchInterval:1111})
+var coolData = coolQuery.data
+
 
 const mutation = useMutation({
   mutationFn: fetcher,
@@ -48,6 +58,14 @@ const mutation = useMutation({
     queryClient.invalidateQueries({ queryKey: ['dat'] })
   },
 })
+
+watch( coolData, (newValue, oldValue) => {
+  console.log(`Count changed from ${oldValue} to ${newValue}`);
+});
+
+watchEffect(() => {
+  console.log(`DATA is: ` + JSON.stringify(data));
+});
 
 function onButtonClick() {
   mutation.mutate({
@@ -61,7 +79,12 @@ function onButtonClick() {
 onMounted(async (props) => {
 
 
+  setInterval(() => {
 
+    console.log("mutate")
+
+    mutation.mutate({})
+  }, 1111);
 
 
 
