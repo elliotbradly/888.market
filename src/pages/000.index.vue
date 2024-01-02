@@ -1,22 +1,15 @@
 <template>
-
   <div class="full-height row wrap justify-start items-start content-start">
+
     <canvas id="indexCanvas"> </canvas>
-  </div>
 
-  <h4>Post {{ postId }}</h4>
-  <h4>Post {{ isError }}</h4>
-  <h4>Post {{ isFetching }}</h4>
-  <h4>Post {{ isPending }}</h4>
+    <span v-if="isPending">Loading...</span>
+    <span v-else-if="isError">Error: {{ error.message }}</span>
 
-  <div v-if="isPending" class="update">Loading...</div>
-  <div v-else-if="isError">An error has occurred: {{ error }}</div>
-  <div v-else-if="data">
-    <h1>{{ data.title }}</h1>
-    <div>
-      <p>{{ data.body }}</p>
-    </div>
-    <div v-if="isFetching" class="update">Background Updating...</div>
+    <ul v-else-if="data">
+      <pre>{{ JSON.stringify(data, null, 2) }}</pre>
+    </ul>
+
   </div>
 
 </template>
@@ -31,13 +24,17 @@ import { mount, update, unmount } from "../screens/horizontal-window"
 //import {mount, update, unmount } from "../composables/tiny-screen"
 
 var postId = 6;
-var isPending, isError, isFetching, data, error;
 
-const fetcher = async (id) =>
-  await fetch('https://jsonplaceholder.typicode.com/posts/${id}').then((response) =>
+const readNow = async () =>
+  await fetch('readNow/').then((response) =>
     response.json(),
   )
 
+const { isPending, isError, data, error } = useQuery({
+  queryKey: ['dat'],
+  queryFn: readNow,
+  refetchInterval: 1111
+})
 
 
 onMounted(async (props) => {
@@ -73,6 +70,6 @@ onUnmounted(async () => {
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'GamePlay'
+  name: 'TitleScreen'
 })
 </script>

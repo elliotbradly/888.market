@@ -29,7 +29,7 @@ export const openMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
   exec('npx quasar dev -m electron', async (err, stdout, stderr) => {
 
-    process.chdir("../reptiq.com");
+    process.chdir("./reptiq.com");
 
     exec('npm start', async (err, stdout, stderr) => {
       console.log(stdout)

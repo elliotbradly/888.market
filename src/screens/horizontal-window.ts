@@ -20,6 +20,14 @@ export const mount = async (value: HelloWorld) => {
   var bit = await SHADE['hunt'](ActVsg.MOUNT_VISAGE, { idx: "vsg00", src: "indexCanvas", dat: { height: 720 } });
   instance?.proxy?.$forceUpdate();
 
+  window.addEventListener('resize', function (event) {
+
+    this.setTimeout(() => {
+      location.reload();
+    }, 333)
+
+  }, true);
+
   return value
 }
 
