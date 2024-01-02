@@ -34,8 +34,8 @@ exports.initMarket = initMarket;
 const openMarket = (cpy, bal, ste) => {
     const { exec } = require('child_process');
     exec('npx quasar dev -m electron', async (err, stdout, stderr) => {
-        if (bal.slv != null)
-            bal.slv({ mrkBit: { idx: "open-market", dat: stdout } });
+        bit = await ste.hunt(ActMrk.DEV_MARKET, { val: 1 });
+        bal.slv({ mrkBit: { idx: "open-market", dat: stdout } });
     });
     return cpy;
 };
@@ -78,6 +78,8 @@ const testMarket = (cpy, bal, ste) => {
 };
 exports.testMarket = testMarket;
 const devMarket = async (cpy, bal, ste) => {
+    if (bal.val == null)
+        bal.val = 0;
     bit = await ste.bus(ActMrk.UPDATE_MARKET, {});
     const { exec, fork } = require('child_process');
     process.chdir("./reptiq.com");
@@ -88,17 +90,11 @@ const devMarket = async (cpy, bal, ste) => {
     exec('wrangler dev', async (err, stdout, stderr) => {
         console.log(stdout);
     });
-    process.chdir("../reptiq.com");
-    exec('npm start', async (err, stdout, stderr) => {
-        console.log(stdout);
-    });
-    //const forked = fork('index.js')
-    //forked.on('message', (msg) => {
-    //  ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: msg })
-    //});
     process.chdir("../");
-    var open = require('open');
-    open('http://localhost:3001/#/');
+    if (bal.val == 0) {
+        var open = require('open');
+        open('http://localhost:3001/#/');
+    }
     bal.slv({ mrkBit: { idx: "dev-market", dat: { src: '888.market' } } });
     return cpy;
 };

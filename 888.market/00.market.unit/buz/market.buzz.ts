@@ -29,14 +29,11 @@ export const openMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
   exec('npx quasar dev -m electron', async (err, stdout, stderr) => {
 
-    process.chdir("./reptiq.com");
+    bit = await ste.hunt(ActMrk.DEV_MARKET, { val: 1 })
 
-    exec('npm start', async (err, stdout, stderr) => {
-      console.log(stdout)
-      bal.slv({ mrkBit: { idx: "open-market", dat: stdout } });
-    })
+    bal.slv({ mrkBit: { idx: "open-market", dat: stdout } });
 
-    process.chdir("../");
+
   });
 
 
@@ -76,7 +73,7 @@ export const deployMarket = async (cpy: MarketModel, bal: MarketBit, ste: State)
 
   bit = await ste.bus(ActDsk.COPY_DISK, { src: './dist/spa', idx: './reptiq.com/public', val: 1 })
 
-  bal.slv({ mrkBit: { idx: "deploy-market", dat: {src:'None'} } });
+  bal.slv({ mrkBit: { idx: "deploy-market", dat: { src: 'None' } } });
 
 
   return cpy;
@@ -107,6 +104,8 @@ export const testMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
 export const devMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
+  if (bal.val == null) bal.val = 0
+
   bit = await ste.bus(ActMrk.UPDATE_MARKET, {})
 
   const { exec, fork } = require('child_process');
@@ -123,27 +122,17 @@ export const devMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) =>
     console.log(stdout)
   })
 
-  process.chdir("../reptiq.com");
-
-  exec('npm start', async (err, stdout, stderr) => {
-    console.log(stdout)
-  })
-
-  //const forked = fork('index.js')
-
-  //forked.on('message', (msg) => {
-
-  //  ste.bus(ActCns.UPDATE_CONSOLE, { idx: 'cns00', src: msg })
-  //});
 
   process.chdir("../");
 
-  var open = require('open')
-  open('http://localhost:3001/#/')
+  if (bal.val == 0) {
+    var open = require('open')
+    open('http://localhost:3001/#/')
+
+  }
+
 
   bal.slv({ mrkBit: { idx: "dev-market", dat: { src: '888.market' } } });
-
-
 
   return cpy;
 };
