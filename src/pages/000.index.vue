@@ -1,35 +1,14 @@
-
 <template>
 
-<div class="q-pa-md">
-    <q-carousel
-      animated
-      v-model="slide"
-      navigation
-      infinite
-      :autoplay="autoplay"
-      arrows
-      transition-prev="slide-right"
-      transition-next="slide-left"
-      @mouseenter="autoplay = false"
-      @mouseleave="autoplay = true"
-    >
-      <q-carousel-slide :name="1" img-src="https://cdn.quasar.dev/img/mountains.jpg" />
-      <q-carousel-slide :name="2" img-src="https://cdn.quasar.dev/img/parallax1.jpg" />
-      <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/parallax2.jpg" />
-      <q-carousel-slide :name="4" img-src="https://cdn.quasar.dev/img/quasar.jpg" />
-    </q-carousel>
-
-</div>
-
+  <div class="full-height row wrap justify-start items-start content-start">
+    <canvas id="indexCanvas"> </canvas>
+  </div>
 
   <h4>Post {{ postId }}</h4>
   <h4>Post {{ isError }}</h4>
   <h4>Post {{ isFetching }}</h4>
   <h4>Post {{ isPending }}</h4>
 
-
-  <a @click="$emit('setPostId', -1)" href="#"> Back </a>
   <div v-if="isPending" class="update">Loading...</div>
   <div v-else-if="isError">An error has occurred: {{ error }}</div>
   <div v-else-if="data">
@@ -40,11 +19,6 @@
     <div v-if="isFetching" class="update">Background Updating...</div>
   </div>
 
-  <div class="full-height row wrap justify-start items-start content-start">
-
-    <canvas id="indexCanvas"> </canvas>
-
-  </div>
 </template>
 
 <script setup>
@@ -53,7 +27,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { useQuery } from '@tanstack/vue-query'
 
 
-import { mount, update, unmount } from "../composables/full-screen"
+import { mount, update, unmount } from "../screens/horizontal-window"
 //import {mount, update, unmount } from "../composables/tiny-screen"
 
 var postId = 6;
@@ -66,21 +40,13 @@ const fetcher = async (id) =>
 
 
 
-
 onMounted(async (props) => {
-
-
-
   let { isPending, isError, isFetching, data, error } = useQuery({
-  queryKey: ['post', postId],
-  queryFn: () => fetcher(postId),
-})
+    queryKey: ['post', postId],
+    queryFn: () => fetcher(postId),
+  })
 
   mount('on')
-
-
-
-
 
   //alert(window.electron.store.get('foo'));
 })

@@ -2,7 +2,7 @@
 <template>
   <q-layout view="hHh lpR fFf">
 
-    <q-header elevated class="bg-primary text-yellow glossy bg-green headerCustomStyle">
+    <q-header elevated class="bg-primary text-yellow glossy bg-black headerCustomStyle">
       <q-toolbar class="q-gutter-sm">
         <q-toolbar-title>
           <q-avatar style="position:relative; top:34px;">
@@ -101,7 +101,7 @@
       <router-view />
     </q-page-container>
 
-   
+
 
   </q-layout>
 </template>
