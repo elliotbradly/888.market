@@ -85,6 +85,7 @@ export const createMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
   exec('npx quasar build', async (err, stdout, stderr) => {
 
+    bit = await ste.hunt( ActMrk.DEPLOY_MARKET, {})
     bal.slv({ mrkBit: { idx: "create-market", dat: { src: '888.market' } } });
 
   })
