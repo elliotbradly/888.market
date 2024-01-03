@@ -1019,7 +1019,7 @@ const createSurface = async (cpy, bal, ste) => {
         height: dat.height,
         view: surface,
         transparent: false,
-        backgroundColor: parseInt('0x8b8680', 16),
+        backgroundColor: parseInt('0xFF00FF', 16),
         //backgroundColor: parseInt(bal.clr, 16),
         forceCanvas: true,
         antialias: true,
@@ -1377,6 +1377,9 @@ const addContainer = async (cpy, bal, ste) => {
         return bal.slv({ canBit: { idx: "add-container-error", dat: bal } });
     bit = await ste.hunt(ActCan.READ_CONTAINER, { idx: bal.idx });
     var can = bit.canBit.dat.bit;
+    if (can == null) {
+        return bal.slv({ canBit: { idx: "add-container-error", dat: {} } });
+    }
     can.addChild(content);
     //var graphic = new PIXI.Graphics();
     //graphic.lineStyle(3, 0x00FF00);
@@ -3841,7 +3844,6 @@ const writeCollect = async (cpy, bal, ste) => {
     if ((bal.bit == null))
         bal.slv({ rskBit: { idx: "write-collect-err", src: 'no-bit' } });
     var cabBit = cpy.caboodleBitList[cpy.caboodleBits[type]];
-    bal.idx;
     if (cabBit.bits[bal.idx] == null) {
         bit = await ste.hunt(bal.bit, { idx: bal.idx, src: bal.src, dat: bal.dat });
         var objDat = bit[Object.keys(bit)[0]];
@@ -3865,7 +3867,7 @@ const writeCollect = async (cpy, bal, ste) => {
                 cabDat = {};
             cabDat[key] = bal.dat[key];
         }
-        cabBit.bitList[cabBit.bits[bal.idx]] = cabDat;
+        cabBit.bitList[cabBit.bits[bal.idx]] = cabBit;
         dat = cabBit;
         //!!! SUPER IMPORTANT
     }
@@ -4137,7 +4139,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CollectModel = void 0;
 class CollectModel {
     constructor() {
-        this.idx = '23.11.14';
         this.caboodleBitList = [];
         this.caboodleBits = {};
     }
