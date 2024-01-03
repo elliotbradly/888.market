@@ -67,6 +67,7 @@ exports.deployMarket = deployMarket;
 const createMarket = (cpy, bal, ste) => {
     const { exec } = require('child_process');
     exec('npx quasar build', async (err, stdout, stderr) => {
+        bit = await ste.hunt(ActMrk.DEPLOY_MARKET, {});
         bal.slv({ mrkBit: { idx: "create-market", dat: { src: '888.market' } } });
     });
     return cpy;
@@ -795,7 +796,7 @@ const initMenu = async (cpy, bal, ste) => {
 };
 exports.initMenu = initMenu;
 const updateMenu = async (cpy, bal, ste) => {
-    lst = [ActMrk.OPEN_MARKET, ActMrk.DEV_MARKET, ActMrk.UPDATE_MARKET, ActMrk.CREATE_MARKET, ActMrk.DEPLOY_MARKET];
+    lst = [ActMrk.OPEN_MARKET, ActMrk.DEV_MARKET, ActMrk.UPDATE_MARKET, ActMrk.CREATE_MARKET];
     bit = await ste.bus(ActGrd.UPDATE_GRID, { x: 0, y: 4, xSpan: 4, ySpan: 12 });
     bit = await ste.bus(ActChc.OPEN_CHOICE, { dat: { clr0: Color.BLACK, clr1: Color.YELLOW }, src: Align.VERTICAL, lst, net: bit.grdBit.dat });
     src = bit.chcBit.src;
