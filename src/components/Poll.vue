@@ -6,6 +6,19 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+
+
+const readNow = async () =>
+  await fetch('writeBlock/').then((response) =>
+    response.json(),
+  )
+
+const { isPending, isError, data, error } = useQuery({
+  queryKey: ['dat'],
+  queryFn: readNow,
+  refetchInterval: 1111
+})
+
 const emit = defineEmits(['files-dropped'])
 
 let active = ref(false)
