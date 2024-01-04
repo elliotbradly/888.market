@@ -1,18 +1,82 @@
 <template>
-  <q-page class="q-gutter-lg window-height window-width row justify-center items-center">
+  <q-page class="q-gutter-sm">
 
-    <div class="full-height row wrap justify-start items-start content-start">
+    <div class="">
       <canvas id="indexCanvas"> </canvas>
     </div>
 
 
-    <div class="q-pa-md q-gutter-sm">
-      <q-btn outline style="color: goldenrod;" label="CLCKWSE" />
-      <q-btn outline style="color: goldenrod;" label="FORWARD" />
-      <q-btn outline style="color: goldenrod;" label="CNTRCLK" />
+    <q-btn-group spread>
+
+      <q-btn size xl outline style="color: goldenrod; height: 150px;">
+        <q-icon name="warning" color="warning" size="4rem" />
+      </q-btn>
+      <q-btn size xl outline style="color: goldenrod; height: 150px;">
+        <q-icon name="warning" color="warning" size="4rem" />
+      </q-btn>
+      <q-btn size xl outline style="color: goldenrod; height: 150px;">
+        <q-icon name="warning" color="warning" size="4rem" />
+      </q-btn>
+      <q-btn size xl outline style="color: goldenrod; height: 150px;">
+        <q-icon name="warning" color="warning" size="4rem" />
+      </q-btn>
+      <q-btn size xl outline style="color: goldenrod; height: 150px;">
+        <q-icon name="warning" color="warning" size="4rem" />
+      </q-btn>
+
+    </q-btn-group>
+
+
+    <q-btn-group spread>
+
+      <q-btn size xl outline style="color: goldenrod; height: 150px;">
+        <q-icon name="warning" color="warning" size="4rem" />
+      </q-btn>
+      <q-btn size xl outline style="color: goldenrod; height: 150px;">
+        <q-icon name="warning" color="warning" size="4rem" />
+      </q-btn>
+      <q-btn size xl outline style="color: goldenrod; height: 150px;">
+        <q-icon name="warning" color="warning" size="4rem" />
+      </q-btn>
+      <q-btn size xl outline style="color: goldenrod; height: 150px;">
+        <q-icon name="warning" color="warning" size="4rem" />
+      </q-btn>
+      <q-btn size xl outline style="color: goldenrod; height: 150px;">
+        <q-icon name="warning" color="warning" size="4rem" />
+      </q-btn>
+
+    </q-btn-group>
+
+
+    <q-btn-group spread>
+
+      <q-btn size xl outline style="color: goldenrod; height: 150px;">
+        <q-icon name="warning" color="warning" size="4rem" />
+      </q-btn>
+      <q-btn size xl outline style="color: goldenrod; height: 150px;">
+        <q-icon name="warning" color="warning" size="4rem" />
+      </q-btn>
+      <q-btn size xl outline style="color: goldenrod; height: 150px;">
+        <q-icon name="warning" color="warning" size="4rem" />
+      </q-btn>
+      <q-btn size xl outline style="color: goldenrod; height: 150px;">
+        <q-icon name="warning" color="warning" size="4rem" />
+      </q-btn>
+      <q-btn size xl outline style="color: goldenrod; height: 150px;">
+        <q-icon name="warning" color="warning" size="4rem" />
+      </q-btn>
+
+    </q-btn-group>
+
+
+
+
+    <div class="">
+      <Poll></Poll>
     </div>
 
-    <Poll></Poll>
+
+
   </q-page>
 </template>
 

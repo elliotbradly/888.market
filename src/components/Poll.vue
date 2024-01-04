@@ -1,5 +1,5 @@
 <template>
-	
+
   <span v-if="isPending">Loading...</span>
     <span v-else-if="isError">Error: {{ error.message }}</span>
     <ul v-else-if="data">
@@ -12,8 +12,10 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useQuery } from '@tanstack/vue-query'
 
+var w = window.screen.width;
+
 const readNow = async () =>
-  await fetch('readNow/').then((response) =>
+  await fetch('readNow/?width=' + w).then((response) =>
     response.json(),
   )
 
@@ -25,10 +27,10 @@ const { isPending, isError, data, error } = useQuery({
 
 
 onMounted(() => {
-	
+
 })
 
 onUnmounted(() => {
-	
+
 })
 </script>
