@@ -1,10 +1,19 @@
 <template>
-  <div class="full-height row wrap justify-start items-start content-start">
-    
+  <q-page class="q-gutter-lg window-height window-width row justify-center items-center">
+
+    <div class="full-height row wrap justify-start items-start content-start">
+      <canvas id="indexCanvas"> </canvas>
+    </div>
+
+
+    <div class="q-pa-md q-gutter-sm">
+      <q-btn outline style="color: goldenrod;" label="CLCKWSE" />
+      <q-btn outline style="color: goldenrod;" label="FORWARD" />
+      <q-btn outline style="color: goldenrod;" label="CNTRCLK" />
+    </div>
+
     <Poll></Poll>
-    <canvas id="indexCanvas"> </canvas>
-    
-  </div>
+  </q-page>
 </template>
 
 <script setup>
