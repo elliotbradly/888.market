@@ -86,6 +86,7 @@ export const createMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
   exec('npx quasar build', async (err, stdout, stderr) => {
 
     bit = await ste.hunt( ActMrk.DEPLOY_MARKET, {})
+    bit = await ste.hunt( ActMrk.DEV_MARKET, {})
     bal.slv({ mrkBit: { idx: "create-market", dat: { src: '888.market' } } });
 
   })
@@ -143,6 +144,10 @@ var patch = (ste, type, bale) => ste.dispatch({ type, bale });
 
 
 
+export const publishMarket = (cpy: MarketModel, bal:MarketBit, ste: State) => {
+ debugger
+ return cpy;
+ };
 import { MarketModel } from "../market.model";
 import MarketBit from "../fce/market.bit";
 import State from "../../99.core/state";

@@ -45,9 +45,16 @@ export const DEV_MARKET = "[Dev action] Dev Market";
  constructor(public bale: MarketBit) {}
  }
  
+export const PUBLISH_MARKET = "[Publish action] Publish Market";
+ export class PublishMarket implements Action {
+ readonly type = PUBLISH_MARKET;
+ constructor(public bale: MarketBit) {}
+ }
+ 
 export type Actions = | InitMarket | UpdateMarket 
 | DeployMarket
 | OpenMarket
 | CreateMarket
 | TestMarket
 | DevMarket
+| PublishMarket

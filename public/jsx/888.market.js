@@ -13,7 +13,7 @@ global.MARKET.ActMrk = require("../dist/888.market/00.market.unit/market.action"
 (function (process){(function (){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.devMarket = exports.testMarket = exports.createMarket = exports.deployMarket = exports.updateMarket = exports.openMarket = exports.initMarket = void 0;
+exports.publishMarket = exports.devMarket = exports.testMarket = exports.createMarket = exports.deployMarket = exports.updateMarket = exports.openMarket = exports.initMarket = void 0;
 const ActMnu = require("../../98.menu.unit/menu.action");
 const ActMrk = require("../../00.market.unit/market.action");
 const ActWal = require("../../01.wallet.unit/wallet.action");
@@ -68,6 +68,7 @@ const createMarket = (cpy, bal, ste) => {
     const { exec } = require('child_process');
     exec('npx quasar build', async (err, stdout, stderr) => {
         bit = await ste.hunt(ActMrk.DEPLOY_MARKET, {});
+        bit = await ste.hunt(ActMrk.DEV_MARKET, {});
         bal.slv({ mrkBit: { idx: "create-market", dat: { src: '888.market' } } });
     });
     return cpy;
@@ -101,12 +102,17 @@ const devMarket = async (cpy, bal, ste) => {
 };
 exports.devMarket = devMarket;
 var patch = (ste, type, bale) => ste.dispatch({ type, bale });
+const publishMarket = (cpy, bal, ste) => {
+    debugger;
+    return cpy;
+};
+exports.publishMarket = publishMarket;
 
 }).call(this)}).call(this,require('_process'))
 },{"../../00.market.unit/market.action":3,"../../01.wallet.unit/wallet.action":9,"../../98.menu.unit/menu.action":21,"../../99.bus.unit/bus.action":26,"../../act/disk.action":37,"../../act/pivot.action":39,"_process":54,"child_process":undefined,"open":undefined}],3:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DevMarket = exports.DEV_MARKET = exports.TestMarket = exports.TEST_MARKET = exports.CreateMarket = exports.CREATE_MARKET = exports.OpenMarket = exports.OPEN_MARKET = exports.DeployMarket = exports.DEPLOY_MARKET = exports.UpdateMarket = exports.UPDATE_MARKET = exports.InitMarket = exports.INIT_MARKET = void 0;
+exports.PublishMarket = exports.PUBLISH_MARKET = exports.DevMarket = exports.DEV_MARKET = exports.TestMarket = exports.TEST_MARKET = exports.CreateMarket = exports.CREATE_MARKET = exports.OpenMarket = exports.OPEN_MARKET = exports.DeployMarket = exports.DEPLOY_MARKET = exports.UpdateMarket = exports.UPDATE_MARKET = exports.InitMarket = exports.INIT_MARKET = void 0;
 // Market actions
 exports.INIT_MARKET = "[Market action] Init Market";
 class InitMarket {
@@ -164,11 +170,19 @@ class DevMarket {
     }
 }
 exports.DevMarket = DevMarket;
+exports.PUBLISH_MARKET = "[Publish action] Publish Market";
+class PublishMarket {
+    constructor(bale) {
+        this.bale = bale;
+        this.type = exports.PUBLISH_MARKET;
+    }
+}
+exports.PublishMarket = PublishMarket;
 
 },{}],4:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.devMarket = exports.testMarket = exports.createMarket = exports.openMarket = exports.deployMarket = exports.updateMarket = exports.initMarket = void 0;
+exports.publishMarket = exports.devMarket = exports.testMarket = exports.createMarket = exports.openMarket = exports.deployMarket = exports.updateMarket = exports.initMarket = void 0;
 var market_buzz_1 = require("./buz/market.buzz");
 Object.defineProperty(exports, "initMarket", { enumerable: true, get: function () { return market_buzz_1.initMarket; } });
 var market_buzz_2 = require("./buz/market.buzz");
@@ -183,6 +197,8 @@ var market_buzz_6 = require("./buz/market.buzz");
 Object.defineProperty(exports, "testMarket", { enumerable: true, get: function () { return market_buzz_6.testMarket; } });
 var market_buzz_7 = require("./buz/market.buzz");
 Object.defineProperty(exports, "devMarket", { enumerable: true, get: function () { return market_buzz_7.devMarket; } });
+var market_buzz_8 = require("./buz/market.buzz");
+Object.defineProperty(exports, "publishMarket", { enumerable: true, get: function () { return market_buzz_8.publishMarket; } });
 
 },{"./buz/market.buzz":2}],5:[function(require,module,exports){
 "use strict";
@@ -221,6 +237,8 @@ function reducer(model = new market_model_1.MarketModel(), act, state) {
             return Buzz.testMarket(clone(model), act.bale, state);
         case Act.DEV_MARKET:
             return Buzz.devMarket(clone(model), act.bale, state);
+        case Act.PUBLISH_MARKET:
+            return Buzz.publishMarket(clone(model), act.bale, state);
         default:
             return model;
     }
@@ -796,7 +814,7 @@ const initMenu = async (cpy, bal, ste) => {
 };
 exports.initMenu = initMenu;
 const updateMenu = async (cpy, bal, ste) => {
-    lst = [ActMrk.OPEN_MARKET, ActMrk.DEV_MARKET, ActMrk.UPDATE_MARKET, ActMrk.CREATE_MARKET];
+    lst = [ActMrk.DEV_MARKET, ActMrk.OPEN_MARKET, ActMrk.UPDATE_MARKET, ActMrk.CREATE_MARKET];
     bit = await ste.bus(ActGrd.UPDATE_GRID, { x: 0, y: 4, xSpan: 4, ySpan: 12 });
     bit = await ste.bus(ActChc.OPEN_CHOICE, { dat: { clr0: Color.BLACK, clr1: Color.YELLOW }, src: Align.VERTICAL, lst, net: bit.grdBit.dat });
     src = bit.chcBit.src;
