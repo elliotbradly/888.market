@@ -1,4 +1,5 @@
 <template>
+  <h3>Poll</h3>
   <span v-if="isPending">Loading...</span>
   <span v-else-if="isError">Error: {{ error.message }}</span>
   <ul v-else-if="data">
@@ -7,7 +8,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, onUpdated } from 'vue'
 import { useQuery } from '@tanstack/vue-query'
 
 var w = window.screen.width;
@@ -19,25 +20,20 @@ const width = () => {
     || 0;
 }
 
-const readNow = async () =>
-
-
-  await fetch('readNow?w=' + width()).then((response) =>
-    response.json(),
-  )
+const readNow = async () => await fetch('readNow?w=' + width()).then((response) => response.json())
 
 const { isPending, isError, data, error } = useQuery({
-  queryKey: ['dat'],
+  queryKey: ['poll'],
   queryFn: readNow,
-  refetchInterval: 11111
+  refetchInterval: 1111
 })
 
 
-onMounted(() => {
+onMounted(async () => {})
 
-})
+onUnmounted(() => {})
 
-onUnmounted(() => {
+onUpdated(() => {})
 
-})
+
 </script>

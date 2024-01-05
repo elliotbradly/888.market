@@ -71,8 +71,13 @@
 
 
 
+
     <div class="">
       <Poll></Poll>
+    </div>
+
+    <div class="">
+      <Status></Status>
     </div>
 
 
@@ -82,7 +87,9 @@
 
 <script setup>
 
+import Status from '../components/Status.vue'
 import Poll from '../components/Poll.vue'
+
 
 import { ref, onMounted, onUnmounted, onUpdated, inject, getCurrentInstance } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
