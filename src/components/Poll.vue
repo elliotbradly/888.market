@@ -14,8 +14,10 @@ import { useQuery } from '@tanstack/vue-query'
 
 var w = window.screen.width;
 
+debugger
+
 const readNow = async () =>
-  await fetch('readNow/?width=' + w).then((response) =>
+  await fetch('readNow?w=' + w).then((response) =>
     response.json(),
   )
 
