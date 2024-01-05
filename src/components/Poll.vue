@@ -29,7 +29,7 @@ const readNow = async () =>
 const { isPending, isError, data, error } = useQuery({
   queryKey: ['dat'],
   queryFn: readNow,
-  refetchInterval: 1111
+  refetchInterval: 11111
 })
 
 
