@@ -8,18 +8,25 @@
           <q-avatar style="position:relative; top:34px;">
             <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
           </q-avatar>
-          <span class="angle-font text-red" style="position:relative; top:40px; left:5px">
-            Repti
+          
+          <span class="new-art-font text-yellow" style="position:relative; top:37px; left:3px">
+            Being
           </span>
 
-          <span class="new-art-font text-orange" style="position:relative; top:37px; left:3px">
-            q
+          
+          <span class="angle-font text-red" style="position:relative; top:40px; left:5px">
+            .ink
+            
           </span>
+
+          
 
           <br>
 
           <span class='pixily-font text-white ' style="position:relative; top:-20px; left:44px">
-            12:06-12.19.23
+            
+            Last deploy of
+
           </span>
 
 
@@ -27,8 +34,8 @@
 
           <span class='pixily-font' style="position:relative; top:-18px; left:44px">
 
-            deployed by T>A>S>U>S>S
-
+            12:06-12.19.23
+            
           </span>
 
         </q-toolbar-title>
@@ -36,7 +43,7 @@
 
 
         <div class="q-pa-md q-pr-m angle-font">
-          <q-btn-dropdown class="glossy" color="orange" label="Connect" outline rounded size="l">
+          <q-btn-dropdown class="flat" color="red" label="Connect" outline size="l">
 
 
 
@@ -70,7 +77,7 @@
 
 
         <div class="q-pa-md q-pr-m angle-font">
-          <q-btn-dropdown class="glossy" color="orange" label="Lore" outline rounded size="l">
+          <q-btn-dropdown class="flat" color="yellow" label="Lore" outline size="l">
             <div class="row no-wrap q-pa-md">
               <div class="column">
                 <div class="text-h6 q-mb-md">Settings</div>
