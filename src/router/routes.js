@@ -9,6 +9,30 @@ const routes = [
   },
 
   {
+    path: '/welcome',
+    component: () => import('layouts/SimpleLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/005.welcome.vue') }
+    ]
+  },
+
+  {
+    path: '/editor',
+    component: () => import('layouts/SimpleLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/006.editor.vue') }
+    ]
+  },
+
+  {
+    path: '/gallery',
+    component: () => import('layouts/SimpleLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/002.gallery.vue') }
+    ]
+  },
+
+  {
     path: '/artes',
     component: () => import('layouts/SimpleLayout.vue'),
     children: [

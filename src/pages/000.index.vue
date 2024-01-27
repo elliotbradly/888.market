@@ -57,15 +57,11 @@
           </span>
 
     </div>
+
+    <button @click="linkClick">I am a Link</button>
   
   
   </div>
-
-  
-
- 
-
-  
 
 
 
@@ -86,6 +82,15 @@ import { mount, update, unmount } from "../screens/horizontal-window"
 
 var slide = ref('style');
 var lorem = 'Lorem ipsum dolor, sit';
+
+const router = useRouter()
+
+var linkClick = () =>{
+
+  router.push('/welcome')
+
+  
+}
 
 
 onMounted(async (props) => {
