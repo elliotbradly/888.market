@@ -2,11 +2,14 @@
   <q-page class="q-gutter-sm">
 
 
-    <h2>
+    <h4>
+      Welcome to Fictiq
+    </h4>
 
-      Welcome
+    <h5>
+    Let's get you set up and ready to play.
+    </h5>
 
-    </h2>
 
   </q-page>
 </template>

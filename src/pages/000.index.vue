@@ -73,7 +73,6 @@
 import Status from '../components/Status.vue'
 import Poll from '../components/Poll.vue'
 
-
 import { ref, onMounted, onUnmounted, onUpdated, inject, getCurrentInstance } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useQuery } from '@tanstack/vue-query'
@@ -94,11 +93,16 @@ var linkClick = () =>{
 
 
 onMounted(async (props) => {
-  mount('on')
+  
+  setTimeout(() => {
+    router.push('/welcome')
+  }, 33);
+
+  //mount('on')
 })
 
 onUpdated(async () => {
-  update('on')
+  //update('on')
 })
 
 onUnmounted(async () => {

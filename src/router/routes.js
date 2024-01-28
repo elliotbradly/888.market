@@ -23,6 +23,15 @@ const routes = [
       { path: '', component: () => import('pages/006.editor.vue') }
     ]
   },
+  
+
+  {
+    path: '/campaigns/new',
+    component: () => import('layouts/SimpleLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/006.editor.vue') }
+    ]
+  },
 
   {
     path: '/gallery',
