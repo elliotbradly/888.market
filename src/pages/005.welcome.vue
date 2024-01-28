@@ -7,9 +7,11 @@
     </h4>
 
     <h5>
-    Let's get you set up and ready to play.
+      Let's get you set up and ready to play.
     </h5>
 
+    <q-btn class="flat" color="secondary" label="Create New Game" outline size="l">
+    </q-btn>
 
   </q-page>
 </template>
@@ -21,13 +23,13 @@ import { useRouter, useRoute } from 'vue-router'
 import { useQuery } from '@tanstack/vue-query'
 
 onMounted(async (props) => {
- 
 
-  
+
+
 })
 
 onUpdated(async () => {
-  
+
 
 
 })
