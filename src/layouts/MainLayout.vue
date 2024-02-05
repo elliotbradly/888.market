@@ -2,20 +2,20 @@
 <template>
   <q-layout view="hHh lpR fFf">
 
-    <q-header elevated class="bg-primary text-yellow glossy bg-black headerCustomStyle">
+    <q-header elevated class="bg-primary text-accent  glossy bg-black headerCustomStyle">
       <q-toolbar class="q-gutter-sm">
         <q-toolbar-title>
           <q-avatar style="position:relative; top:34px;">
             <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
           </q-avatar>
           
-          <span class="new-art-font text-yellow" style="position:relative; top:37px; left:3px">
-            Being
+          <span class="generis-font text-primary" style="position:relative; top:37px; left:3px">
+            Fiti
           </span>
 
           
-          <span class="angle-font text-red" style="position:relative; top:40px; left:5px">
-            .ink
+          <span class="generis-font text-secondary" style="position:relative; top:37px; right:2px">
+            Q
             
           </span>
 
@@ -23,7 +23,7 @@
 
           <br>
 
-          <span class='pixily-font text-white ' style="position:relative; top:-20px; left:44px">
+          <span class='pixily-font text-positive' style="position:relative; top:-20px; left:44px">
             
             Last deploy of
 
@@ -32,7 +32,7 @@
 
           <br>
 
-          <span class='pixily-font' style="position:relative; top:-18px; left:44px">
+          <span class='pixily-font text-positive' style="position:relative; top:-18px; left:44px">
 
             12:06-12.19.23
             
@@ -43,7 +43,7 @@
 
 
         <div class="q-pa-md q-pr-m angle-font">
-          <q-btn-dropdown class="flat" color="red" label="Connect" outline size="l">
+          <q-btn-dropdown class="flat text-primary"  label="Connect" outline size="l">
 
 
 
@@ -77,7 +77,7 @@
 
 
         <div class="q-pa-md q-pr-m angle-font">
-          <q-btn-dropdown class="flat" color="yellow" label="Lore" outline size="l">
+          <q-btn-dropdown class="flat text-accent"  label="Lore" outline size="l">
             <div class="row no-wrap q-pa-md">
               <div class="column">
                 <div class="text-h6 q-mb-md">Settings</div>

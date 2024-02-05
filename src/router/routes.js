@@ -34,6 +34,14 @@ const routes = [
   },
 
   {
+    path: '/cut-scene',
+    component: () => import('layouts/SimpleLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/007.cut-scene.vue') }
+    ]
+  },
+
+  {
     path: '/gallery',
     component: () => import('layouts/SimpleLayout.vue'),
     children: [

@@ -94,9 +94,10 @@ var linkClick = () =>{
 
 onMounted(async (props) => {
   
-  setTimeout(() => {
-    router.push('/welcome')
-  }, 33);
+
+  //setTimeout(() => {
+  //  router.push('/cut-scene')
+  //}, 33);
 
   //mount('on')
 })
