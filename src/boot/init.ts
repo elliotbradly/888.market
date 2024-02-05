@@ -17,6 +17,8 @@ export default boot(async ( dat ) => {
 
   var win: any = window
   dat.app.provide('SHADE', win.SHADE)
+  dat.app.provide('DEPTH', win.DEPTH)
+  
   dat.app.provide('MQTT', win.MQTT)
   dat.app.provide('MARKET', win.MARKET)
 
@@ -31,6 +33,7 @@ export default boot(async ( dat ) => {
   const localBit = { idx: 'local', src: local };
 
   var bit = await win.SHADE.hunt( win.SHADE.ActShd.INIT_SHADE, { val: 0,  src: local });
+  //var bit = await win.DEPTH.hunt( win.DEPTH.ActDep.INIT_DEPTH, { val: 0,  src: local });
   var bit = await win.MARKET.hunt( win.MARKET.ActMrk.INIT_MARKET, { val: 0,  src: local });
 
 
