@@ -17,6 +17,22 @@ const routes = [
   },
 
   {
+    path: '/map',
+    component: () => import('layouts/SimpleLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/003.map.vue') }
+    ]
+  },
+
+  {
+    path: '/button-bar',
+    component: () => import('layouts/SimpleLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/004.button-bar.vue') }
+    ]
+  },
+
+  {
     path: '/editor',
     component: () => import('layouts/SimpleLayout.vue'),
     children: [
