@@ -22,6 +22,8 @@ export default boot(async ( dat ) => {
   dat.app.provide('MQTT', win.MQTT)
   dat.app.provide('MARKET', win.MARKET)
 
+  dat.app.provide('QUILL', win.Quill)
+
   dat.app.use(VueQueryPlugin)
 
   Dark.set(true)

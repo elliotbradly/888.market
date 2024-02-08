@@ -2,9 +2,9 @@
 const routes = [
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
+    component: () => import('layouts/FictiqLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/000.index.vue') }
+      { path: '', component: () => import('pages/008.quill.vue') }
     ]
   },
 
@@ -21,6 +21,14 @@ const routes = [
     component: () => import('layouts/SimpleLayout.vue'),
     children: [
       { path: '', component: () => import('pages/003.map.vue') }
+    ]
+  },
+
+  {
+    path: '/quill',
+    component: () => import('layouts/FictiqLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/008.quill.vue') }
     ]
   },
 
