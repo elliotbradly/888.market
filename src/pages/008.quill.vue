@@ -28,6 +28,8 @@ onMounted(async (props) => {
     theme: 'snow'
   });
 
+  quill.setText( '\n next \n next \n next');
+
 })
 
 onUpdated(async () => {
@@ -49,3 +51,14 @@ export default defineComponent({
 </script>
 
 
+<style>
+
+#editor {
+  color: black;
+  background-color:white;
+  font-family: "montReg", "Courier New", monospace;
+  font-size: 15px;
+}
+
+
+</style>
