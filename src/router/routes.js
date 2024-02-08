@@ -2,9 +2,9 @@
 const routes = [
   {
     path: '/',
-    component: () => import('layouts/FictiqLayout.vue'),
+    component: () => import('layouts/SimpleLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/008.quill.vue') }
+      { path: '', component: () => import('pages/010.log-in.vue') }
     ]
   },
 
