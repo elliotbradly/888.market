@@ -67,8 +67,8 @@ exports.deployMarket = deployMarket;
 const createMarket = (cpy, bal, ste) => {
     const { exec } = require('child_process');
     exec('npx quasar build', async (err, stdout, stderr) => {
-        bit = await ste.hunt(ActMrk.DEPLOY_MARKET, {});
-        bit = await ste.hunt(ActMrk.DEV_MARKET, {});
+        //bit = await ste.hunt( ActMrk.DEPLOY_MARKET, {})
+        //bit = await ste.hunt( ActMrk.DEV_MARKET, {})
         bal.slv({ mrkBit: { idx: "create-market", dat: { src: '888.market' } } });
     });
     return cpy;
@@ -85,7 +85,7 @@ const devMarket = async (cpy, bal, ste) => {
     bit = await ste.bus(ActMrk.UPDATE_MARKET, {});
     const { exec, fork } = require('child_process');
     process.chdir("../fictiq.com");
-    exec('npm start', async (err, stdout, stderr) => {
+    exec('npx wrangler pages dev ./', async (err, stdout, stderr) => {
         console.log(stdout);
     });
     // process.chdir("../base");
@@ -95,7 +95,7 @@ const devMarket = async (cpy, bal, ste) => {
     process.chdir("../");
     if (bal.val == 0) {
         var open = require('open');
-        open('http://localhost:3001/#/');
+        open('http://127.0.0.1:8788/');
     }
     bal.slv({ mrkBit: { idx: "dev-market", dat: { src: '888.market' } } });
     return cpy;

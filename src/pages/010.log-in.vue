@@ -1,3 +1,4 @@
+ 
 <template>
   <q-page class="bg-grey window-height window-width row justify-center items-center">
     <div class="column">
@@ -13,7 +14,7 @@
             </q-form>
           </q-card-section>
           <q-card-actions class="q-px-md">
-            <q-btn unelevated color="light-green-7" size="lg" class="full-width" label="Login" />
+            <q-btn unelevated color="light-green-7" size="lg" class="full-width" label="Login" @click="login('quill')" />
           </q-card-actions>
           <q-card-section class="text-center q-pa-none">
             <p class="text-grey-6">Not reigistered? Created an Account</p>
@@ -24,17 +25,62 @@
   </q-page>
 </template>
 
-<script>
-export default {
-  name: 'Login',
-  data() {
-    return {
-      email: '',
-      password: ''
-    }
-  }
+
+<script setup>
+
+import Status from '../components/Status.vue'
+import Poll from '../components/Poll.vue'
+
+import { ref, onMounted, onUnmounted, onUpdated, inject, getCurrentInstance } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+import { useQuery } from '@tanstack/vue-query'
+import { mount, update, unmount } from "../screens/horizontal-window"
+
+
+var email = 'email'
+var password = 'password'
+
+
+var slide = ref('style');
+var lorem = 'Lorem ipsum dolor, sit';
+
+const router = useRouter()
+
+var login = (idx) => {
+  router.push('/' + idx)
 }
+
+
+onMounted(async (props) => {
+
+
+  //setTimeout(() => {
+  //  router.push('/cut-scene')
+  //}, 33);
+
+  //mount('on')
+})
+
+onUpdated(async () => {
+  //update('on')
+})
+
+onUnmounted(async () => {
+})
+
+
 </script>
+
+<script>
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: 'Login Screen'
+})
+</script>
+
+
+
 
 <style>
 .q-card {
