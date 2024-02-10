@@ -57,7 +57,7 @@ export default defineComponent({
   color: black;
   background-color:white;
   font-family: "montReg", "Courier New", monospace;
-  font-size: 15px;
+  font-size: 20px;
 }
 
 

@@ -59,7 +59,7 @@ const updateMarket = (cpy, bal, ste) => {
 };
 exports.updateMarket = updateMarket;
 const deployMarket = async (cpy, bal, ste) => {
-    bit = await ste.bus(ActDsk.COPY_DISK, { src: './dist/spa', idx: '../fictiq.com/public', val: 1 });
+    bit = await ste.bus(ActDsk.COPY_DISK, { src: './dist/spa', idx: '../fictiq.com/', val: 1 });
     bal.slv({ mrkBit: { idx: "deploy-market", dat: { src: 'None' } } });
     return cpy;
 };
@@ -67,8 +67,8 @@ exports.deployMarket = deployMarket;
 const createMarket = (cpy, bal, ste) => {
     const { exec } = require('child_process');
     exec('npx quasar build', async (err, stdout, stderr) => {
-        //bit = await ste.hunt( ActMrk.DEPLOY_MARKET, {})
-        //bit = await ste.hunt( ActMrk.DEV_MARKET, {})
+        bit = await ste.hunt(ActMrk.DEPLOY_MARKET, {});
+        bit = await ste.hunt(ActMrk.DEV_MARKET, {});
         bal.slv({ mrkBit: { idx: "create-market", dat: { src: '888.market' } } });
     });
     return cpy;
