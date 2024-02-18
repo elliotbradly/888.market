@@ -38,3 +38,4 @@ yarn-error.log*
 /reptiq.com
 /base
 /auth
+/*.env
