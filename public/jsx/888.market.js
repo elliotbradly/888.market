@@ -60,7 +60,7 @@ const updateMarket = (cpy, bal, ste) => {
 };
 exports.updateMarket = updateMarket;
 const deployMarket = async (cpy, bal, ste) => {
-    bit = await ste.bus(ActDsk.COPY_DISK, { src: './dist/spa', idx: '../fictiq.com/', val: 1 });
+    bit = await ste.bus(ActDsk.COPY_DISK, { src: './dist/spa', idx: '../service/fictiq.com/', val: 1 });
     bal.slv({ mrkBit: { idx: "deploy-market", dat: { src: 'None' } } });
     return cpy;
 };
@@ -85,7 +85,7 @@ const devMarket = async (cpy, bal, ste) => {
         bal.val = 0;
     bit = await ste.bus(ActMrk.UPDATE_MARKET, {});
     const { exec, fork } = require('child_process');
-    process.chdir("../fictiq.com");
+    process.chdir("../service/fictiq.com");
     exec('npx wrangler pages dev ./', async (err, stdout, stderr) => {
         console.log(stdout);
     });
@@ -93,6 +93,7 @@ const devMarket = async (cpy, bal, ste) => {
     // exec('wrangler dev', async (err, stdout, stderr) => {
     //   console.log(stdout)
     // })
+    process.chdir("../");
     process.chdir("../");
     if (bal.val == 0) {
         var open = require('open');

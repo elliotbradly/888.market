@@ -71,7 +71,7 @@ export const updateMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
 export const deployMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
 
-  bit = await ste.bus(ActDsk.COPY_DISK, { src: './dist/spa', idx: '../fictiq.com/', val: 1 })
+  bit = await ste.bus(ActDsk.COPY_DISK, { src: './dist/spa', idx: '../service/fictiq.com/', val: 1 })
 
   bal.slv({ mrkBit: { idx: "deploy-market", dat: { src: 'None' } } });
 
@@ -112,7 +112,7 @@ export const devMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) =>
 
   const { exec, fork } = require('child_process');
 
-  process.chdir("../fictiq.com");
+  process.chdir("../service/fictiq.com");
 
   exec('npx wrangler pages dev ./', async (err, stdout, stderr) => {
     console.log(stdout)
@@ -125,6 +125,7 @@ export const devMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) =>
  // })
 
 
+  process.chdir("../");
   process.chdir("../");
 
   if (bal.val == 0) {
