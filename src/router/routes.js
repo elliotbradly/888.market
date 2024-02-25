@@ -31,6 +31,13 @@ const routes = [
       { path: '', component: () => import('pages/008.quill.vue') }
     ]
   },
+  {
+    path: '/title',
+    component: () => import('layouts/FictiqLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/011.title.vue') }
+    ]
+  },
 
   {
     path: '/button-bar',
