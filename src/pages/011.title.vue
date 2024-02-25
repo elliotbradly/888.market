@@ -1,17 +1,22 @@
  
 <template>
-  <q-page class="bg-grey window-height window-width row justify-center items-center">
+  <q-page class=" window-height window-width row justify-center items-center q-pa-xl">
 
-    title page
+    <title-card></title-card>
+    <title-card></title-card>
+    <title-card></title-card>
+    <title-card></title-card>
+    <new-title-card></new-title-card>
     
   </q-page>
+
 </template>
 
 
 <script setup>
 
-import Status from '../components/Status.vue'
-import Poll from '../components/Poll.vue'
+import TitleCard from '../components/TitleCard.vue'
+import NewTitleCard from '../components/NewTitleCard.vue'
 
 import { ref, onMounted, onUnmounted, onUpdated, inject, getCurrentInstance } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
