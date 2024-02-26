@@ -1,4 +1,6 @@
 
+import TitleRoutes from "./routes.title"
+
 const routes = [
   {
     path: '/',
@@ -8,6 +10,8 @@ const routes = [
     ]
   },
 
+  
+  
   {
     path: '/welcome',
     component: () => import('layouts/SimpleLayout.vue'),
@@ -32,14 +36,6 @@ const routes = [
     ]
   },
   {
-    path: '/title',
-    component: () => import('layouts/FictiqLayout.vue'),
-    children: [
-      { path: '', component: () => import('pages/011.title.vue') }
-    ]
-  },
-
-  {
     path: '/button-bar',
     component: () => import('layouts/SimpleLayout.vue'),
     children: [
@@ -54,7 +50,7 @@ const routes = [
       { path: '', component: () => import('pages/006.editor.vue') }
     ]
   },
-  
+
 
   {
     path: '/campaigns/new',
@@ -112,5 +108,9 @@ const routes = [
     component: () => import('pages/ErrorNotFound.vue')
   }
 ]
+
+TitleRoutes.forEach( (a)=>{
+  routes.push(a)
+})
 
 export default routes

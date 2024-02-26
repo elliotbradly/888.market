@@ -42,7 +42,7 @@ onUnmounted(async () => {
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'Login Screen'
+  name: 'Title Screen'
 })
 </script>
 
