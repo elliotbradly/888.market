@@ -2,7 +2,7 @@
   <q-card flat bordered class="my-card full-width " :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'">
 
     <q-card-actions>
-      <q-btn outline color="text-primary" class="full-width" @click="action()"> Create New Title </q-btn>
+      <q-btn outline color="text-primary" class="full-width" @click="action()">Create New Title</q-btn>
     </q-card-actions>
   </q-card>
 
@@ -11,11 +11,9 @@
   
 <script setup>
 
+import { useRouter } from 'vue-router'
 
-var action = () => {
-
-  alert("gooo")
-}
-
+const router = useRouter()
+var action = () => router.push('/title-new')
 
 </script>

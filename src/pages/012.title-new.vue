@@ -1,39 +1,31 @@
  
 <template>
-  <q-page class=" window-height window-width row justify-center items-center q-pa-xl">
+  <q-page class=" window-height">
 
-    <title-card></title-card>
-    <title-card></title-card>
-    <title-card></title-card>
-    <title-card></title-card>
-    <new-title-card></new-title-card>
-    
+    <h6>Create New Title</h6>
+
+    <q-input outlined v-model="text" label="Title Name" />
+
+    <q-separator color="black" spaced="true" inset="false" size="30px" />
+
+    <q-btn outline color="text-primary" class="full-width" @click="action()">Create Now</q-btn>
+
   </q-page>
-
 </template>
-
 
 <script setup>
 
-import TitleCard from '../components/TitleCard.vue'
-import NewTitleCard from '../components/NewTitleCard.vue'
-
 import { ref, onMounted, onUnmounted, onUpdated, inject, getCurrentInstance } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { useQuery } from '@tanstack/vue-query'
-import { mount, update, unmount } from "../screens/horizontal-window"
+import { reactive } from 'vue'
 
+const text = ref('')
 const router = useRouter()
 
-onMounted(async (props) => {
-})
+var action = () => {
 
-onUpdated(async () => {
-  //update('on')
-})
 
-onUnmounted(async () => {
-})
+}
 
 
 </script>
@@ -42,15 +34,7 @@ onUnmounted(async () => {
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'Title Screen'
+  name: 'Title New Screen'
 })
 </script>
 
-
-
-
-<style>
-.q-card {
-  width: 360px;
-}
-</style>
