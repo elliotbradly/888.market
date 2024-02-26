@@ -1,15 +1,21 @@
 <template>
-    
-    <q-card flat bordered class="my-card full-width " :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'">
-     
-      <q-card-actions>
-        <q-btn outline color="text-primary" class="full-width"> Create New Title </q-btn>
-      </q-card-actions>
-    </q-card>
+  <q-card flat bordered class="my-card full-width " :class="$q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2'">
 
-    <q-separator dark spaced="true" inset="true" size="100px" />
+    <q-card-actions>
+      <q-btn outline color="text-primary" class="full-width" @click="action()"> Create New Title </q-btn>
+    </q-card-actions>
+  </q-card>
 
-  </template>
+  <q-separator dark spaced="true" inset="true" size="100px" />
+</template>
   
-  <script setup>
-  </script>
+<script setup>
+
+
+var action = () => {
+
+  alert("gooo")
+}
+
+
+</script>
