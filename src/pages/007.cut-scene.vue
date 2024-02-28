@@ -215,7 +215,9 @@ Edward downs his champagne in a gulp.
 
 EXT.  OUTSIDE LA RUE 14° - NIGHT
 
-We come into the middle of an argument on the sidewalk.  Occasional PASSERSBY take notice, especially as it gets more heated.  Both men are a little drunk.
+We come into the middle of an argument on the sidewalk. 
+Occasional PASSERSBY take notice, especially as it gets more heated.  
+Both men are a little drunk.
 
 EDWARD
 What, a father's not allowed to talk about his son?
