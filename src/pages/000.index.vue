@@ -1,19 +1,23 @@
 <template>
   <q-page class="q-gutter-sm">
 
-    <div class="q-pa-md">
+    <div class="q-pa-md absolute-center">
 
-      <iframe src="https://player.twitch.tv/?channel=glopratchet&parent=fictiq.com&muted=true" height="480" width="720"
+      <iframe src="https://player.twitch.tv/?channel=glopratchet&parent=fictiq.com&muted=true" height="384" width="640"
         allowfullscreen>
       </iframe>
 
-      <button @click="visitPage('map')">Map</button>
-      <button @click="visitPage('fullscreen')">Full Screen</button>
-      <button @click="visitPage('gallery')">Gallery</button>
-      <button @click="visitPage('artes')">Map</button>
-      <button @click="visitPage('button-bar')">Button Bar</button>
-      <button @click="visitPage('welcome')">Welcome</button>
-      <button @click="visitPage('editor')">Editor</button>
+      <q-btn-group push class="absolute-center" style="position:relative; top:11px; left:320px">
+        
+      <q-btn outline label="left" @click="visitPage('map')" />
+      <q-btn outline label="forward" @click="visitPage('map')" />
+      <q-btn outline  label="backward" @click="visitPage('map')" />
+      <q-btn outline label="right" @click="visitPage('map')" />
+        
+
+      </q-btn-group>
+
+      
 
     </div>
 
@@ -36,8 +40,8 @@ var lorem = 'Lorem ipsum dolor, sit';
 
 const router = useRouter()
 
-var visitPage = (idx) => {
-  router.push('/' + idx)
+var action = (idx) => {
+ //router.push('/' + idx)
 }
 
 
