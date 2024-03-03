@@ -84,6 +84,13 @@ const routes = [
     ]
   },
 
+  {
+    path: '/player',
+    component: () => import('layouts/SimpleLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/009.player.vue') }
+    ]
+  },
 
   {
     path: '/gameTest',
@@ -98,6 +105,14 @@ const routes = [
     component: () => import('layouts/SimpleLayout.vue'),
     children: [
       { path: '', component: () => import('pages/001.full-screen.vue') }
+    ]
+  },
+
+  {
+    path: '/login',
+    component: () => import('layouts/SimpleLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/010.log-in.vue') }
     ]
   },
 

@@ -1,17 +1,23 @@
 <template>
   <q-page class="q-gutter-sm">
 
-    <div class="absolute-top-right">
-
-      <q-btn outline label="access" @click="action('login')" />
-
-    </div>
-
     <div class="q-pa-md absolute-center">
 
       <iframe src="https://player.twitch.tv/?channel=glopratchet&parent=fictiq.com&muted=true" height="384" width="640"
         allowfullscreen>
       </iframe>
+
+      <q-btn-group push class="absolute-center" style="position:relative; top:11px; left:320px">
+        
+      <q-btn outline label="left" @click="visitPage('map')" />
+      <q-btn outline label="forward" @click="visitPage('map')" />
+      <q-btn outline  label="backward" @click="visitPage('map')" />
+      <q-btn outline label="right" @click="visitPage('map')" />
+        
+
+      </q-btn-group>
+
+      
 
     </div>
 
@@ -35,7 +41,7 @@ var lorem = 'Lorem ipsum dolor, sit';
 const router = useRouter()
 
 var action = (idx) => {
- router.push('/' + idx)
+ //router.push('/' + idx)
 }
 
 
