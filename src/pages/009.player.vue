@@ -1,13 +1,17 @@
 <template>
-  <q-page class="q-gutter-sm">
+  <q-page class="row justify-center text-center">
 
-    <div class="q-pa-md absolute-center">
+    <div class="q-pa-md">
 
       <iframe src="https://player.twitch.tv/?channel=glopratchet&parent=fictiq.com&muted=true" height="384" width="640"
         allowfullscreen>
       </iframe>
 
-      <q-btn-group push class="absolute-center" style="position:relative; top:15px; left:320px">
+      <br>
+
+      
+
+      <q-btn-group style="position:relative; top:-3px; left:0px"  push>
 
         <q-btn outline label="left" @click="visitPage('map')" />
         <q-btn outline label="forward" @click="visitPage('map')" />
@@ -16,22 +20,12 @@
 
       </q-btn-group>
 
-  
+      <br>
 
- <div class="q-pa-md example-break-row">
 
-    <div class="row items-start example-container">
-      <div class="example-cell" tabindex="0">Col 1 / Row 1</div>
-      <div class="example-cell col-6" tabindex="0">Col 2 / Row 1 - 1<br>Col 2 / Row 1 - 2</div>
-      <div class="flex-break"></div>
-      <div class="example-cell" tabindex="0">Col 1 / Row 2</div>
-      <div class="flex-break q-py-md"></div>
-      <div class="example-cell col-4" tabindex="0">Col 1 / Row 3</div>
-      <div class="example-cell" tabindex="0">Col 2 / Row 3</div>
-      <div class="example-cell" tabindex="0">Col 3 / Row 3</div>
-    </div>
+      <iframe id="rpgmenu" src="https://alligatorfarm-biz.pages.dev/" height="640" width="640" style="overflow:hidden;" allowfullscreen>
+      </iframe>
 
-  </div>
 
 
 
@@ -48,7 +42,8 @@ import Poll from '../components/Poll.vue'
 import { ref, onMounted, onUnmounted, onUpdated, inject, getCurrentInstance } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useQuery } from '@tanstack/vue-query'
-import { mount, update, unmount } from "../screens/horizontal-window"
+
+import { mount, update, unmount } from "../composables/tiny-screen"
 
 
 var slide = ref('style');
@@ -59,6 +54,8 @@ const router = useRouter()
 var action = (idx) => {
   //router.push('/' + idx)
 }
+
+
 
 
 onMounted(async (props) => {
@@ -88,3 +85,5 @@ export default defineComponent({
   name: 'TitleScreen'
 })
 </script>
+
+<style></style>
