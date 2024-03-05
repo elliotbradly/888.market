@@ -10,6 +10,8 @@ import * as ActBus from "../../99.bus.unit/bus.action";
 import * as ActVrt from "../../act/vurt.action"
 import * as ActDsk from "../../act/disk.action"
 import * as ActPvt from "../../act/pivot.action";
+import * as ActDep from "../../act/depth.action";
+import * as ActEng from "../../act/engine.action";
 
 var bit, val, idx, dex, lst, dat, src;
 
@@ -18,7 +20,11 @@ export const initMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) =
   if (bal.dat != null) bit = await ste.hunt(ActBus.INIT_BUS, { idx: cpy.idx, lst: [ActMrk, ActWal], dat: bal.dat, src: bal.src })
 
   if (bal.val == 1) patch(ste, ActMnu.INIT_MENU, bal);
-  if (bal.slv != null) bal.slv({ intBit: { idx: "init-market" } });
+
+  bit = ste.bus(ActEng.OPEN_ENGINE, { idx: bal.idx });
+  //bal.slv({ blnBit: { idx: "open-blender", bit } });
+
+  if (bal.slv != null) bal.slv({ intBit: { idx: "init-market", bit } });
 
   return cpy;
 };
@@ -56,7 +62,9 @@ export const updateMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
     bit = await ste.bus(ActDsk.READ_DISK, { src: './work/888.market.js' })
     var shade = bit.dskBit.dat;
 
-    var writeBit = await ste.bus(ActDsk.WRITE_DISK, { src: './public/jsx/888.market.js', dat: shade })
+    var writeBit = await ste.bus(ActDsk.WRITE_DISK, { src: './data/functions/api/888.market.js', dat: shade })
+    //replace all the functions
+    bit = await ste.bus(ActDsk.COPY_DISK, { src: './data/functions/api/', idx: '../service/fictiq.com/functions/api/', val: 1 })
 
     setTimeout(() => {
       if (bal.slv != null) bal.slv({ mrkBit: { idx: "update-market", dat: { lst: [writeBit] } } });
@@ -96,10 +104,10 @@ export const createMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
 
 
-export const testMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
+export const testMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
-
-  bal.slv({ mrkBit: { idx: "test-market", dat: { src: '888.market' } } });
+  bit = ste.bus( ActDep.TEST_DEPTH, { src: '888.market' })
+  bal.slv({ mrkBit: { idx: "test-market", dat: { src: '888.market', dat:bal.dat, bit } } });
 
   return cpy;
 };
