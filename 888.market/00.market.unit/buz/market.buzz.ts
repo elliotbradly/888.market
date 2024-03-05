@@ -21,7 +21,7 @@ export const initMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) =
 
   if (bal.val == 1) patch(ste, ActMnu.INIT_MENU, bal);
 
-  bit = ste.bus(ActEng.OPEN_ENGINE, { idx: bal.idx });
+  
   //bal.slv({ blnBit: { idx: "open-blender", bit } });
 
   if (bal.slv != null) bal.slv({ intBit: { idx: "init-market", bit } });
@@ -106,7 +106,8 @@ export const createMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
 export const testMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
-  bit = ste.bus( ActDep.TEST_DEPTH, { src: '888.market' })
+  bit = ste.bus(ActEng.OPEN_ENGINE, { idx: bal.idx });
+  
   bal.slv({ mrkBit: { idx: "test-market", dat: { src: '888.market', dat:bal.dat, bit } } });
 
   return cpy;
