@@ -1,5 +1,7 @@
 
 import TitleRoutes from "./routes.title"
+import ActorRoutes from "./routes.actor"
+import AdminRoutes from "./routes.admin"
 
 const routes = [
   {
@@ -127,5 +129,15 @@ const routes = [
 TitleRoutes.forEach( (a)=>{
   routes.push(a)
 })
+
+ActorRoutes.forEach( (a)=>{
+  routes.push(a)
+})
+
+AdminRoutes.forEach( (a)=>{
+  routes.push(a)
+})
+
+
 
 export default routes

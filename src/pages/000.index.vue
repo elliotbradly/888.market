@@ -2,9 +2,11 @@
   <q-page class="q-gutter-sm">
 
     <div class="absolute-top-right">
-
       <q-btn outline label="access" @click="action('login')" />
+    </div>
 
+    <div class="absolute-bottom-left">
+      <q-btn outline label="admin" @click="action('admin')" />
     </div>
 
     <div class="q-pa-md absolute-center">
