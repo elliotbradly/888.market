@@ -11,39 +11,36 @@
 
 
       <div class="q-pa-md full-width">
-    <q-card class="my-card">
+    <q-card flat bordered class="my-card">
       <q-parallax
         src="https://cdn.quasar.dev/img/parallax1.jpg"
-        :height="15"
+        :height="5"
       />
 
       <q-card-section calss class="bg-black text-white">
         <div class="text-subtitle2">current world time</div>
-        <div class="text-h6"> ➡️ ➡️ ➡️ ➡️ </div>
-        <div class="text-subtitle2">time to next check</div>
+        <div class="text-h6">『 ➡️ ➡️ ➡️ ➡️ 』</div>
+        <q-linear-progress :value="progress" color="warning" class="q-mt-sm" />
       </q-card-section>
     </q-card>
   </div>
 
       
 
-      <q-btn-group style="position:relative; top:-3px; left:0px"  push>
+      <q-btn-group style="position:relative; top:0px; left:0px"  push>
 
-        <q-btn outline label="left" @click="visitPage('map')" />
-        <q-btn outline label="forward" @click="visitPage('map')" />
-        <q-btn outline label="backward" @click="visitPage('map')" />
-        <q-btn outline label="right" @click="visitPage('map')" />
+        <q-btn outline label="⬅️" @click="visitPage('map')" size="32px" />
+        <q-btn outline label="⬆️" @click="visitPage('map')" size="32px" />
+        <q-btn outline label="🖐️" @click="visitPage('map')" size="32px" />
+        <q-btn outline label="⬇️" @click="visitPage('map')" size="32px" />
+        <q-btn outline label="➡️" @click="visitPage('map')" size="32px" />
 
       </q-btn-group>
 
       <br>
 
-
       <iframe id="rpgmenu" src="https://alligatorfarm-biz.pages.dev/" height="640" width="640" style="overflow:hidden;" allowfullscreen>
       </iframe>
-
-
-
 
     </div>
 
@@ -61,6 +58,9 @@ import { useQuery } from '@tanstack/vue-query'
 
 import { mount, update, unmount } from "../composables/tiny-screen"
 
+
+
+var progress = .5
 
 var slide = ref('style');
 var lorem = 'Lorem ipsum dolor, sit';

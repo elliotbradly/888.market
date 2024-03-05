@@ -38,7 +38,9 @@ export const initMenu = async (cpy: MenuModel, bal: MenuBit, ste: State) => {
 
 export const updateMenu = async (cpy: MenuModel, bal: MenuBit, ste: State) => {
 
-  lst = [ ActMrk.DEV_MARKET, ActMrk.OPEN_MARKET,  ActMrk.UPDATE_MARKET, ActMrk.CREATE_MARKET, ActOai.UPDATE_OPENAI ]
+
+  // ActOai.UPDATE_OPENAI
+  lst = [ ActMrk.DEV_MARKET, ActMrk.OPEN_MARKET,  ActMrk.UPDATE_MARKET, ActMrk.CREATE_MARKET ]
 
   bit = await ste.bus(ActGrd.UPDATE_GRID, { x: 0, y: 4, xSpan: 4, ySpan: 12 })
   bit = await ste.bus(ActChc.OPEN_CHOICE, { dat: { clr0: Color.BLACK, clr1: Color.YELLOW }, src: Align.VERTICAL, lst, net: bit.grdBit.dat })
