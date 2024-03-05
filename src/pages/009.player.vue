@@ -9,6 +9,22 @@
 
       <br>
 
+
+      <div class="q-pa-md full-width">
+    <q-card class="my-card">
+      <q-parallax
+        src="https://cdn.quasar.dev/img/parallax1.jpg"
+        :height="15"
+      />
+
+      <q-card-section calss class="bg-black text-white">
+        <div class="text-subtitle2">current world time</div>
+        <div class="text-h6"> ➡️ ➡️ ➡️ ➡️ </div>
+        <div class="text-subtitle2">time to next check</div>
+      </q-card-section>
+    </q-card>
+  </div>
+
       
 
       <q-btn-group style="position:relative; top:-3px; left:0px"  push>
