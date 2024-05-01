@@ -2,6 +2,7 @@
 import TitleRoutes from "./routes.title"
 import ActorRoutes from "./routes.actor"
 import AdminRoutes from "./routes.admin"
+import SowerRoutes from "./routes.sower"
 
 const routes = [
   {
@@ -135,6 +136,10 @@ ActorRoutes.forEach( (a)=>{
 })
 
 AdminRoutes.forEach( (a)=>{
+  routes.push(a)
+})
+
+SowerRoutes.forEach( (a)=>{
   routes.push(a)
 })
 

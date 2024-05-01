@@ -6,7 +6,7 @@
 
       <div class="col-3" style="overflow: auto; min-width: 200px; max-width: 200px;">
 
-        <h5> ONE </h5>
+        <q-btn outline color="text-primary" class="full-width" @click="action('sower')">Orb Sower</q-btn>
 
       </div>
 
@@ -22,7 +22,7 @@
 
       <div style="overflow: auto; min-width: 200px; max-width: 360px;">
 
-        <q-btn outline color="text-primary" class="full-width" @click="viewOrb()">View Orb</q-btn>
+        <q-btn outline color="text-primary" class="full-width" @click="action('title')">View Orb</q-btn>
 
         <h5> Three </h5>
 
@@ -42,8 +42,8 @@ import { reactive } from 'vue'
 const text = ref('')
 const router = useRouter()
 
-var viewOrb = () => {
-  router.push('/title')
+var action = (idx) => {
+  router.push('/' + idx )
 }
 
 </script>
