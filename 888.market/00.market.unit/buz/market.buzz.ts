@@ -60,7 +60,7 @@ export const updateMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
 };
 
 
-export const openMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
+export const devMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
   const { exec } = require('child_process');
 
@@ -112,7 +112,7 @@ export const testMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) =
   return cpy;
 };
 
-export const devMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) => {
+export const openMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
   if (bal.val == null) bal.val = 0
 
