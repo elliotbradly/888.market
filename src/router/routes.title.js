@@ -2,6 +2,14 @@
 const routes = [
   
   {
+    path: '/title',
+    component: () => import('layouts/SimpleLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/016.title.vue') }
+    ]
+  },
+
+  {
     path: '/title-new',
     component: () => import('layouts/FictiqLayout.vue'),
     children: [

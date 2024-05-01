@@ -1,19 +1,14 @@
 <template>
   <q-page class="q-gutter-sm">
 
-    <div class="absolute-top-right">
-      <q-btn outline label="access" @click="action('login')" />
-    </div>
-
-    <div class="absolute-bottom-left">
-      <q-btn outline label="admin" @click="action('admin')" />
-    </div>
-
+ 
     <div class="q-pa-md absolute-center">
 
       <iframe src="https://fictiq-com.pages.dev/" height="480" width="720"
         allowfullscreen>
       </iframe>
+
+      <q-btn flat label="Back to Admin" @click="action('admin')" />
 
     </div>
 
@@ -48,12 +43,8 @@ var action = (idx) => {
 }
 
 
+
 onMounted(async (props) => {
-
-
-  setTimeout(() => {
-    router.push('/admin')
-  }, 3);
 
   //mount('on')
 })

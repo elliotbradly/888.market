@@ -5,8 +5,8 @@ const fs = require('fs');
 const MQTT = require('async-mqtt');
 const { program } = require('commander');
 
-const PORT = 1001;
-const wsPort = 8883;
+const PORT = 1888;
+const wsPort = 8888;
 
 let SHADE;
 let VURT;

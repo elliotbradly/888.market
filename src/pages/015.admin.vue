@@ -17,12 +17,12 @@
         <q-input outlined v-model="text" label="Title Name" />
 
         <q-separator color="black" spaced="true" inset="false" size="30px" />
-
-        <q-btn outline color="text-primary" class="full-width" @click="action()">Create Now</q-btn>
-
+        
       </div>
 
       <div style="overflow: auto; min-width: 200px; max-width: 360px;">
+
+        <q-btn outline color="text-primary" class="full-width" @click="viewOrb()">View Orb</q-btn>
 
         <h5> Three </h5>
 
@@ -42,11 +42,9 @@ import { reactive } from 'vue'
 const text = ref('')
 const router = useRouter()
 
-var action = () => {
-
-
+var viewOrb = () => {
+  router.push('/title')
 }
-
 
 </script>
 
