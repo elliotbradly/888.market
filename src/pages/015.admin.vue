@@ -4,9 +4,10 @@
 
     <div class="fit row no-wrap justify-start items-start content-start">
 
-      <div class="col-3" style="overflow: auto; min-width: 300px; max-width: 300px;">
+      <div class="col-3" style="overflow: auto; min-width: 200px; max-width: 200px;">
 
-        ONE
+        <h5> ONE </h5>
+
       </div>
 
       <div class="col-grow" style="overflow: auto;">
@@ -23,7 +24,7 @@
 
       <div style="overflow: auto; min-width: 200px; max-width: 360px;">
 
-        THREE
+        <h5> Three </h5>
 
       </div>
 

@@ -26,7 +26,7 @@ export default boot(async ( dat ) => {
 
   dat.app.use(VueQueryPlugin)
 
-  Dark.set(true)
+  Dark.set(false)
 
   dat.app
 
