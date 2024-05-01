@@ -51,9 +51,9 @@ var action = (idx) => {
 onMounted(async (props) => {
 
 
-  //setTimeout(() => {
-  //  router.push('/cut-scene')
-  //}, 33);
+  setTimeout(() => {
+    router.push('/admin')
+  }, 33);
 
   //mount('on')
 })

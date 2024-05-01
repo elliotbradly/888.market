@@ -2,13 +2,32 @@
 <template>
   <q-page class=" window-height">
 
-    <h6>Admin</h6>
+    <div class="fit row no-wrap justify-start items-start content-start">
 
-    <q-input outlined v-model="text" label="Title Name" />
+      <div class="col-3" style="overflow: auto; min-width: 300px; max-width: 300px;">
 
-    <q-separator color="black" spaced="true" inset="false" size="30px" />
+        ONE
+      </div>
 
-    <q-btn outline color="text-primary" class="full-width" @click="action()">Create Now</q-btn>
+      <div class="col-grow" style="overflow: auto;">
+
+        <h6>Admin</h6>
+
+        <q-input outlined v-model="text" label="Title Name" />
+
+        <q-separator color="black" spaced="true" inset="false" size="30px" />
+
+        <q-btn outline color="text-primary" class="full-width" @click="action()">Create Now</q-btn>
+
+      </div>
+
+      <div style="overflow: auto; min-width: 200px; max-width: 360px;">
+
+        THREE
+
+      </div>
+
+    </div>
 
   </q-page>
 </template>
