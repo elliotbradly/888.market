@@ -29,24 +29,6 @@ export const initMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) =
   return cpy;
 };
 
-export const openMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
-
-  const { exec } = require('child_process');
-
-  exec('npx quasar dev -m electron', async (err, stdout, stderr) => {
-
-    bit = await ste.hunt(ActMrk.DEV_MARKET, { val: 1 })
-
-    bal.slv({ mrkBit: { idx: "open-market", dat: stdout } });
-
-
-  });
-
-
-  return cpy;
-};
-
-
 
 export const updateMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
@@ -62,10 +44,11 @@ export const updateMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
     bit = await ste.bus(ActDsk.READ_DISK, { src: './work/888.market.js' })
     var shade = bit.dskBit.dat;
 
-    var writeBit = await ste.bus(ActDsk.WRITE_DISK, { src: './data/functions/api/888.market.js', dat: shade })
+    //var writeBit = await ste.bus(ActDsk.WRITE_DISK, { src: './data/functions/api/888.market.js', dat: shade })
     //replace all the functions
-    bit = await ste.bus(ActDsk.COPY_DISK, { src: './data/functions/api/', idx: '../service/fictiq.com/functions/api/', val: 1 })
+    //bit = await ste.bus(ActDsk.COPY_DISK, { src: './data/functions/api/', idx: '../service/orbs.ink/functions/api/', val: 1 })
 
+    var writeBit ={ idx:'not-concerned-with-the-functions-just-yet'}
     setTimeout(() => {
       if (bal.slv != null) bal.slv({ mrkBit: { idx: "update-market", dat: { lst: [writeBit] } } });
     }, 3);
@@ -76,10 +59,26 @@ export const updateMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
   return cpy;
 };
 
+
+export const openMarket = (cpy: MarketModel, bal: MarketBit, ste: State) => {
+
+  const { exec } = require('child_process');
+
+  exec('npx quasar dev -m electron', async (err, stdout, stderr) => {
+
+    bit = await ste.hunt(ActMrk.DEV_MARKET, { val: 1 })
+    bal.slv({ mrkBit: { idx: "open-market", dat: stdout } });
+
+  });
+
+
+  return cpy;
+};
+
 export const deployMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) => {
 
 
-  bit = await ste.bus(ActDsk.COPY_DISK, { src: './dist/spa', idx: '../service/fictiq.com/', val: 1 })
+  bit = await ste.bus(ActDsk.COPY_DISK, { src: './dist/spa', idx: '../service/orbs.ink/', val: 1 })
 
   bal.slv({ mrkBit: { idx: "deploy-market", dat: { src: 'None' } } });
 
@@ -121,7 +120,7 @@ export const devMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) =>
 
   const { exec, fork } = require('child_process');
 
-  process.chdir("../service/fictiq.com");
+  process.chdir("../service/orbs.ink");
 
   exec('npx wrangler pages dev ./', async (err, stdout, stderr) => {
     console.log(stdout)
@@ -152,12 +151,12 @@ export const devMarket = async (cpy: MarketModel, bal: MarketBit, ste: State) =>
 
 var patch = (ste, type, bale) => ste.dispatch({ type, bale });
 
-
-
 export const publishMarket = (cpy: MarketModel, bal:MarketBit, ste: State) => {
  debugger
  return cpy;
  };
+
+
 import { MarketModel } from "../market.model";
 import MarketBit from "../fce/market.bit";
 import State from "../../99.core/state";
