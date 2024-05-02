@@ -15,7 +15,7 @@ global.MARKET.ActOai = require("../dist/888.market/02.openai.unit/openai.action"
 (function (process){(function (){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.publishMarket = exports.devMarket = exports.testMarket = exports.createMarket = exports.deployMarket = exports.openMarket = exports.updateMarket = exports.initMarket = void 0;
+exports.publishMarket = exports.openMarket = exports.testMarket = exports.createMarket = exports.deployMarket = exports.devMarket = exports.updateMarket = exports.initMarket = void 0;
 const ActMnu = require("../../98.menu.unit/menu.action");
 const ActMrk = require("../../00.market.unit/market.action");
 const ActWal = require("../../01.wallet.unit/wallet.action");
@@ -56,7 +56,7 @@ const updateMarket = (cpy, bal, ste) => {
     return cpy;
 };
 exports.updateMarket = updateMarket;
-const openMarket = (cpy, bal, ste) => {
+const devMarket = (cpy, bal, ste) => {
     const { exec } = require('child_process');
     exec('npx quasar dev -m electron', async (err, stdout, stderr) => {
         bit = await ste.hunt(ActMrk.DEV_MARKET, { val: 1 });
@@ -64,7 +64,7 @@ const openMarket = (cpy, bal, ste) => {
     });
     return cpy;
 };
-exports.openMarket = openMarket;
+exports.devMarket = devMarket;
 const deployMarket = async (cpy, bal, ste) => {
     bit = await ste.bus(ActDsk.COPY_DISK, { src: './dist/spa', idx: '../service/orbs.ink/', val: 1 });
     bal.slv({ mrkBit: { idx: "deploy-market", dat: { src: 'None' } } });
@@ -87,7 +87,7 @@ const testMarket = async (cpy, bal, ste) => {
     return cpy;
 };
 exports.testMarket = testMarket;
-const devMarket = async (cpy, bal, ste) => {
+const openMarket = async (cpy, bal, ste) => {
     if (bal.val == null)
         bal.val = 0;
     bit = await ste.bus(ActMrk.UPDATE_MARKET, {});
@@ -109,7 +109,7 @@ const devMarket = async (cpy, bal, ste) => {
     bal.slv({ mrkBit: { idx: "dev-market", dat: { src: '888.market' } } });
     return cpy;
 };
-exports.devMarket = devMarket;
+exports.openMarket = openMarket;
 var patch = (ste, type, bale) => ste.dispatch({ type, bale });
 const publishMarket = (cpy, bal, ste) => {
     debugger;
