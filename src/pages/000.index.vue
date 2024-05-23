@@ -30,7 +30,6 @@ import { useRouter, useRoute } from 'vue-router'
 import { useQuery } from '@tanstack/vue-query'
 import { mount, update, unmount } from "../screens/horizontal-window"
 
-
 var slide = ref('style');
 var lorem = 'Lorem ipsum dolor, sit';
 
@@ -50,9 +49,8 @@ var action = (idx) => {
 
 onMounted(async (props) => {
 
-
   setTimeout(() => {
-    router.push('/admin')
+ //   router.push('/admin')
   }, 3);
 
   //mount('on')
