@@ -11,9 +11,6 @@
 
     <div class="q-pa-md absolute-center">
 
-      <iframe src="https://fictiq-com.pages.dev/" height="480" width="720"
-        allowfullscreen>
-      </iframe>
 
     </div>
 
